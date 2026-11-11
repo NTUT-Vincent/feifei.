@@ -16,10 +16,39 @@ feifei. 是一個以放鬆、探索與個人化為核心的 **Web App**。使用
 - [產品企畫書](docs/PRODUCT_PLAN.md)
 - [產品功能規格（PRD）](docs/PRODUCT_SPEC.md)
 
-## MVP
-Google 搜尋（開啟 Google 結果）、網站捷徑、拖曳調整的 Widgets、主題設定、免登入本機保存、YouTube/Twitch/Spotify 合法嵌入，以及具備合法資料來源時的 PTT 內容卡片。
+## 已支援
 
-## 建議技術
-Next.js + React + TypeScript；響應式 Grid Layout；localStorage 儲存個人設定。需要第三方 API 時使用 Next.js server routes，並依 API 條款快取、限流。帳號同步與資料庫留待後續版本。
+- Google 搜尋在新分頁開啟。常用捷徑可自訂名稱、網址、圖示與順序。
+- 在「編輯版面」新增、移除、拖曳或調整小工具寬度。方向鍵按鈕也可調整順序。
+- 三款主題均有淺色與深色模式。偏好保存在目前瀏覽器，可從設定還原預設首頁。
+- YouTube 支援影片與播放清單。Twitch 支援頻道、VOD 與剪輯。Spotify 支援歌曲、播放清單、專輯、藝人、節目與單集。
+- 選擇播放後才載入官方 iframe。播放器內可開啟原始平台。Twitch 播放器需要至少 400 × 300 px，較窄的畫面會提供原站連結。
+- PTT 提供看板連結。動畫瘋與巴哈姆特提供站外捷徑。
 
-> 狀態：規劃中。本文不是已實作功能的宣告。
+## 開發
+
+使用 Node.js 24。首頁採 Next.js App Router，`GET /api/embed` 驗證來源連結並產生官方播放器 URL。此版本不需要帳號、資料庫或第三方 API 金鑰。
+
+```sh
+npm ci
+npm run dev
+```
+
+開啟 [http://localhost:3000](http://localhost:3000)。
+
+## 驗證
+
+```sh
+npm run lint
+npm run typecheck
+npm test
+npm run build
+npx playwright install chromium
+npm run test:e2e
+```
+
+Playwright 預設啟動本機 production build。設定 `FEIFEI_BASE_URL` 可對部署版本執行同一套測試。端對端測試使用實際 Route Handler，外部播放器 iframe 使用測試回應，避免平台波動干擾測試。
+
+## 部署
+
+在 Vercel 將 GitHub repository 連到 Next.js 專案，使用 Node.js 24。App Router 的 Route Handler 需要伺服器執行環境。

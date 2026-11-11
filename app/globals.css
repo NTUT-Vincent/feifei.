@@ -315,7 +315,7 @@ legend { padding: 0; margin-bottom: 8px; font-size: .875rem; font-weight: 650; }
 .widget-picker { display: grid; gap: 7px; }
 .widget-picker button { justify-content: flex-start; min-height: 47px; padding: 5px 8px; }
 .widget-picker button > svg:last-child { margin-left: auto; }
-.player-area { position: relative; width: 100%; overflow: hidden; aspect-ratio: 16 / 9; min-height: 170px; border-radius: 8px; background: var(--wash); }
+.player-area { position: relative; width: 100%; overflow: hidden; aspect-ratio: 16 / 9; min-height: 200px; border-radius: 8px; background: var(--wash); }
 .player-twitch { min-height: 300px; }
 .player-spotify { aspect-ratio: auto; height: 352px; }
 .player-area iframe { position: absolute; inset: 0; border: 0; width: 100%; height: 100%; }

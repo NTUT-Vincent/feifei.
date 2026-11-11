@@ -64,6 +64,21 @@ test("saved configuration round trips and invalid or future data recovers to def
   }
 });
 
+test("updates the retired default YouTube stream and preserves the user's layout", () => {
+  const defaults = defaultSettings();
+  const retired = {
+    ...defaults.widgets[0],
+    title: "lofi hip hop radio",
+    url: "https://www.youtube.com/watch?v=jfKfPfyJRdk",
+    width: 2,
+  };
+  const saved = { ...defaults, widgets: [defaults.widgets[2], retired] };
+  const restored = readSettings(JSON.stringify(saved));
+  assert.deepEqual(restored.widgets, [defaults.widgets[2], { ...defaults.widgets[0], width: 2 }]);
+  const custom = { ...retired, title: "自訂影片" };
+  assert.deepEqual(readSettings(JSON.stringify({ ...saved, widgets: [custom] })).widgets, [custom]);
+});
+
 test("layout movement is immutable and handles invalid positions", () => {
   const items = ["one", "two", "three"];
   assert.deepEqual(moveItem(items, 0, 2), ["two", "three", "one"]);

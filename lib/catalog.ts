@@ -6,8 +6,8 @@ export type WidgetType = (typeof widgetTypes)[number];
 export const widgetCatalog = {
   youtube: {
     name: "YouTube",
-    sample: "lofi hip hop radio",
-    url: "https://www.youtube.com/watch?v=jfKfPfyJRdk",
+    sample: "lofi hip hop mix",
+    url: "https://www.youtube.com/watch?v=8b3fqIBrNW0",
     home: "https://www.youtube.com/",
   },
   twitch: {

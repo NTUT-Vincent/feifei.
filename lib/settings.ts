@@ -65,7 +65,15 @@ export function readSettings(raw: string | null): Settings {
   if (raw) {
     try {
       const result = settingsSchema.safeParse(JSON.parse(raw));
-      if (result.success) return result.data;
+      if (result.success) {
+        const widgets = result.data.widgets.map((widget) =>
+          widget.type === "youtube" && widget.title === "lofi hip hop radio" &&
+          widget.url === "https://www.youtube.com/watch?v=jfKfPfyJRdk"
+            ? { ...widget, title: widgetCatalog.youtube.sample, url: widgetCatalog.youtube.url }
+            : widget,
+        );
+        return { ...result.data, widgets };
+      }
     } catch {
       // A malformed saved layout can be replaced with a fresh copy.
     }

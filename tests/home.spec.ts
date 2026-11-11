@@ -42,14 +42,14 @@ test("drags, resizes, removes and restores widgets", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "編輯版面" }).click();
   const widgets = page.locator(".widget-grid > article");
-  await page.getByRole("button", { name: "拖曳 lofi hip hop radio" }).dragTo(widgets.nth(1));
+  await page.getByRole("button", { name: "拖曳 lofi hip hop mix" }).dragTo(widgets.nth(1));
   await expect(widgets.first()).toHaveAttribute("aria-label", "Twitch 精選剪輯");
   await page.getByRole("button", { name: "編輯 Twitch 精選剪輯" }).click();
   const dialog = page.getByRole("dialog");
   await dialog.getByLabel("桌面寬度").selectOption("2");
   await dialog.getByRole("button", { name: "儲存" }).click();
   await expect(widgets.first()).toHaveCSS("grid-column-start", "span 2");
-  await page.getByRole("button", { name: "移除 lofi hip hop radio" }).click();
+  await page.getByRole("button", { name: "移除 lofi hip hop mix" }).click();
   await expect(widgets).toHaveCount(2);
   await page.getByRole("button", { name: "新增小工具" }).click();
   await dialog.getByRole("button", { name: "YouTube" }).click();
@@ -65,7 +65,7 @@ test("drags, resizes, removes and restores widgets", async ({ page }) => {
 test("edits a media URL and rejects links from other providers", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "編輯版面" }).click();
-  await page.getByRole("button", { name: "編輯 lofi hip hop radio" }).click();
+  await page.getByRole("button", { name: "編輯 lofi hip hop mix" }).click();
   const dialog = page.getByRole("dialog");
   await dialog.getByLabel("網址").fill("https://example.org/");
   await dialog.getByRole("button", { name: "儲存" }).click();
@@ -106,7 +106,7 @@ test("loads all three embeds via the actual Route Handler and keeps source links
   await page.goto("/");
   await expect(page.locator("iframe")).toHaveCount(0);
   for (const [provider, title, host, label] of [
-    ["youtube", "lofi hip hop radio", "www.youtube-nocookie.com", "YouTube"],
+    ["youtube", "lofi hip hop mix", "www.youtube-nocookie.com", "YouTube"],
     ["twitch", "Twitch 精選剪輯", "clips.twitch.tv", "Twitch"],
     ["spotify", "lofi beats", "open.spotify.com", "Spotify"],
   ]) {
@@ -134,7 +134,7 @@ test("recovers from a failed backend and validates API input", async ({ page, re
   await context.route("**/api/embed?**", (route) => route.fulfill({ status: 503 }), { times: 1 });
   await context.route("https://www.youtube-nocookie.com/**", (route) => route.fulfill({ body: "Embed test fixture" }));
   await page.goto("/");
-  await page.getByRole("button", { name: "播放 lofi hip hop radio" }).click();
+  await page.getByRole("button", { name: "播放 lofi hip hop mix" }).click();
   const dialog = page.getByRole("dialog");
   await expect(dialog.getByRole("status")).toContainText("播放器暫時無法載入");
   await expect(dialog.getByRole("link", { name: "在 YouTube 開啟" })).toBeVisible();

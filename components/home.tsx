@@ -1,6 +1,5 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -19,12 +18,10 @@ import { ShortcutForm, WidgetForm } from "./edit-forms";
 import { SiteIcon } from "./icons";
 import { WidgetCard } from "./widget-card";
 
-const MediaPlayer = dynamic(() => import("./media-player").then((module) => module.MediaPlayer));
-
 type Overlay =
   | { type: "preferences" | "reset" | "add-widget" }
   | { type: "shortcut"; item?: Shortcut }
-  | { type: "widget" | "player"; item: Widget };
+  | { type: "widget"; item: Widget };
 
 export function Home() {
   const raw = useSyncExternalStore(subscribeSettings, readSavedSettings, serverSettings);
@@ -148,7 +145,6 @@ export function Home() {
                 canMoveRight={index < settings.widgets.length - 1}
                 dragging={dragging === widget.id}
                 dropTarget={dropTarget === widget.id && dragging !== widget.id}
-                onPlay={() => setOverlay({ type: "player", item: widget })}
                 onEdit={() => setOverlay({ type: "widget", item: widget })}
                 onRemove={() => updateSettings((current) => ({ ...current, widgets: current.widgets.filter(({ id }) => id !== widget.id) }))}
                 onMove={(offset) => moveWidget(widget.id, offset)}
@@ -208,7 +204,6 @@ export function Home() {
           }} />
         </Dialog>
       )}
-      {overlay?.type === "player" && <MediaPlayer widget={overlay.item} onClose={close} />}
     </div>
   );
 }

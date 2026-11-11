@@ -5,17 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { widgetCatalog } from "../lib/catalog";
 import { resolveEmbed, type Embed } from "../lib/embeds";
 import type { Widget } from "../lib/settings";
-import { Dialog } from "./dialog";
 
-export function MediaPlayer({ widget, onClose }: { widget: Widget; onClose: () => void }) {
-  return (
-    <Dialog title={widget.title} onClose={onClose} wide>
-      {widget.type !== "ptt" && <EmbedPlayer provider={widget.type} url={widget.url} title={widget.title} />}
-    </Dialog>
-  );
-}
-
-function EmbedPlayer({ provider, url, title }: { provider: Exclude<Widget["type"], "ptt">; url: string; title: string }) {
+export function MediaPlayer({ provider, url, title }: { provider: Exclude<Widget["type"], "ptt">; url: string; title: string }) {
   const [result, setResult] = useState<Embed | null | undefined>(undefined);
   const [frameStatus, setFrameStatus] = useState<"loading" | "ready" | "error">("loading");
   const [narrow, setNarrow] = useState<boolean | null>(null);

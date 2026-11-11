@@ -115,15 +115,22 @@ test("loads all three embeds via the actual Route Handler and keeps source links
       page.getByRole("button", { name: `播放 ${title}` }).click(),
     ]);
     expect(response.status()).toBe(200);
-    const dialog = page.getByRole("dialog");
-    const iframe = dialog.locator("iframe");
+    const card = page.getByRole("article", { name: title, exact: true });
+    const iframe = card.locator("iframe");
     await expect(iframe).toHaveAttribute("src", new RegExp(host));
     if (provider === "twitch") {
       const src = new URL((await iframe.getAttribute("src"))!);
       expect(src.searchParams.get("parent")).toBe(new URL(page.url()).hostname);
     }
-    await expect(dialog.getByRole("link", { name: `在 ${label} 開啟` })).toHaveAttribute("target", "_blank");
-    await dialog.getByRole("button", { name: "關閉" }).click();
+    await expect(card.getByRole("link", { name: `在 ${label} 開啟` })).toHaveAttribute("target", "_blank");
+    await expect(page.getByRole("dialog")).toHaveCount(0);
+  }
+  await page.getByRole("searchbox", { name: "Google 搜尋" }).fill("播放時仍可搜尋");
+  await expect(page.locator(".widget iframe")).toHaveCount(3);
+  for (const title of ["lofi hip hop mix", "Twitch 精選剪輯", "lofi beats"]) {
+    const card = page.getByRole("article", { name: title, exact: true });
+    await card.getByRole("button", { name: `收起 ${title}` }).click();
+    await expect(card.locator("iframe")).toHaveCount(0);
   }
   expect(errors).toEqual([]);
 });
@@ -135,11 +142,11 @@ test("recovers from a failed backend and validates API input", async ({ page, re
   await context.route("https://www.youtube-nocookie.com/**", (route) => route.fulfill({ body: "Embed test fixture" }));
   await page.goto("/");
   await page.getByRole("button", { name: "播放 lofi hip hop mix" }).click();
-  const dialog = page.getByRole("dialog");
-  await expect(dialog.getByRole("status")).toContainText("播放器暫時無法載入");
-  await expect(dialog.getByRole("link", { name: "在 YouTube 開啟" })).toBeVisible();
-  await dialog.getByRole("button", { name: "重試" }).click();
-  await expect(dialog.locator("iframe")).toHaveAttribute("src", /youtube-nocookie/);
+  const card = page.getByRole("article", { name: "lofi hip hop mix", exact: true });
+  await expect(card.getByRole("status")).toContainText("播放器暫時無法載入");
+  await expect(card.getByRole("link", { name: "在 YouTube 開啟" })).toBeVisible();
+  await card.getByRole("button", { name: "重試" }).click();
+  await expect(card.locator("iframe")).toHaveAttribute("src", /youtube-nocookie/);
 });
 
 test("fits phone, tablet and desktop and shows a Twitch link at narrow widths", async ({ page }) => {
@@ -151,10 +158,10 @@ test("fits phone, tablet and desktop and shows a Twitch link at narrow widths", 
   }
   await page.setViewportSize({ width: 390, height: 844 });
   await page.getByRole("button", { name: "播放 Twitch 精選剪輯" }).click();
-  const dialog = page.getByRole("dialog");
-  await expect(dialog.getByRole("status")).toContainText("畫面太窄");
-  await expect(dialog.locator("iframe")).toHaveCount(0);
-  await expect(dialog.getByRole("link", { name: "在 Twitch 開啟" })).toBeVisible();
+  const card = page.getByRole("article", { name: "Twitch 精選剪輯", exact: true });
+  await expect(card.getByRole("status")).toContainText("畫面太窄");
+  await expect(card.locator("iframe")).toHaveCount(0);
+  await expect(card.getByRole("link", { name: "在 Twitch 開啟" })).toBeVisible();
 });
 
 test("restores defaults after invalid local data", async ({ page }) => {

@@ -53,6 +53,7 @@ export function PttHot() {
             onClick={() => { setCategory(key as keyof typeof pttCategories); setPage(0); }}>{label}</button>
         ))}
       </div>
+      {!loading && mode === "hot" && data?.mode === "latest" ? <p className="news-notice" role="status">PTT 暫時不提供推文熱度，現在顯示最新討論</p> : null}
       {loading ? <p className="news-state" role="status">正在逛 PTT…</p> : error ? (
         <div className="news-state" role="status">
           <p>PTT 暫時無法讀取</p>
@@ -70,8 +71,8 @@ export function PttHot() {
                 </div>
                 <h3>{item.title}</h3>
                 <div className="news-meta">
-                  <span>{mode === "hot" ? `推文 ${item.heat === 100 ? "爆" : item.heat ?? "—"}` : "PTT"}</span>
-                  {mode === "latest" ? <time dateTime={item.publishedAt}>{dateFormat.format(new Date(item.publishedAt))}</time> : null}
+                  <span>{data?.mode === "hot" ? `推文 ${item.heat === 100 ? "爆" : item.heat ?? "—"}` : "PTT"}</span>
+                  {data?.mode === "latest" ? <time dateTime={item.publishedAt}>{dateFormat.format(new Date(item.publishedAt))}</time> : null}
 
                 </div>
               </a>

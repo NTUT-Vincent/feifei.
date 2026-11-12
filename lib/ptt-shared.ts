@@ -15,5 +15,6 @@ export type PttItem = {
   board: string;
   category: PttCategory;
   publishedAt: string;
+  heat?: number;
 };
-export type PttResponse = { items: PttItem[]; unavailableBoards: string[] };
+export type PttResponse = { items: PttItem[]; unavailableBoards: string[]; mode: 'hot' | 'latest' };

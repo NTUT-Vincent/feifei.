@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { collectPttPosts, mixPttPosts, pttBoards, type PttItem } from "../lib/ptt.ts";
+import { collectPttPosts, collectPttHot, parsePttListing, mixPttPosts, pttBoards, type PttItem } from "../lib/ptt.ts";
 
 const date = "2026-11-12T12:00:00.000Z";
 const post = (board: string, id: string, category: PttItem["category"]): PttItem => ({
@@ -23,10 +23,10 @@ test("recent PTT posts remain grouped by topic and de-duplicated", () => {
 
 test("PTT board list spans leisure, games, and technology without gossip", () => {
   const names = pttBoards.map((entry) => entry.board);
-  for (const board of ["Lifeismoney", "C_Chat", "Steam", "movie"]) {
+  for (const board of ["Lifeismoney", "WomenTalk", "MobileComm", "PC_Shopping", "C_Chat", "Steam", "movie"]) {
     assert.ok(names.includes(board), board);
   }
-  assert.deepEqual([...names].sort(), ["Lifeismoney", "C_Chat", "Steam", "movie"].sort());
+  assert.deepEqual([...names].sort(), ["Lifeismoney", "WomenTalk", "MobileComm", "PC_Shopping", "C_Chat", "Steam", "movie"].sort());
   assert.equal(new Set(names).size, names.length);
   assert.ok(!names.includes("Gossiping"));
 });
@@ -44,4 +44,20 @@ test("all PTT feeds failing returns no invented posts", async () => {
   const result = await collectPttPosts(async () => { throw Error("unavailable"); });
   assert.equal(result.items.length, 0);
   assert.equal(result.unavailableBoards.length, pttBoards.length);
+});
+
+test("PTT listing extracts genuine push badges, skips boo/unsafe and orders by heat", async () => {
+  const config = pttBoards.find((board) => board.board === "C_Chat")!;
+  const row = (badge: string, title: string, href: string) =>
+    `<div class="r-ent"><div class="nrec"><span class="hl f3">${badge}</span></div><div class="title"><a href="${href}">${title}</a></div></div>`;
+  const html = row("爆", "動畫討論", "/bbs/C_Chat/M.1794400000.A.ABC.html") +
+    row("12", "遊戲討論", "/bbs/C_Chat/M.1794400000.A.DEF.html") +
+    row("X3", "負評", "/bbs/C_Chat/M.1794400000.A.111.html") +
+    row("50", "惡意連結", "https://evil.example/a");
+  const parsed = parsePttListing(html, config);
+  assert.deepEqual(parsed.map((post) => post.heat), [100, 12]);
+  const result = await collectPttHot(async () => parsed);
+  assert.equal(result.mode, "hot");
+  assert.equal(result.items[0].heat, 100);
+  assert.equal(result.unavailableBoards.length, 0);
 });

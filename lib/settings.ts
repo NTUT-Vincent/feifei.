@@ -21,9 +21,12 @@ const widgetSchema = z.object({
   type: z.enum(widgetTypes),
   title,
   url: z.string().max(2048),
+  queue: z.array(z.object({ url: z.string().max(2048), title: z.string().min(1).max(200) })).max(30).optional(),
+  shuffle: z.boolean().optional(),
+  loop: z.boolean().optional(),
   width: z.union([z.literal(1), z.literal(2), z.literal(3)]),
 }).refine((widget) =>
-  widget.type === "ptt" ? widget.url === widgetCatalog.ptt.url : Boolean(resolveEmbed(widget.type, widget.url, "localhost")),
+  widget.type === "ptt" ? widget.url === widgetCatalog.ptt.url : Boolean(resolveEmbed(widget.type, widget.url, "localhost")) && (widget.queue ?? []).every((item) => Boolean(resolveEmbed(widget.type as Exclude<WidgetType, "ptt">, item.url, "localhost"))),
 );
 
 const settingsSchema = z.object({

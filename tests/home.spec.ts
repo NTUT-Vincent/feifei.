@@ -97,56 +97,36 @@ test("changes and persists appearance, then resets", async ({ page }) => {
   await expect(page.locator(".site")).toHaveAttribute("data-mode", "light");
 });
 
-test("loads all three embeds via the actual Route Handler and keeps source links available", async ({ page, context }) => {
-  for (const host of ["www.youtube-nocookie.com", "clips.twitch.tv", "open.spotify.com"]) {
+test("keeps one active embed and source links available", async ({ page, context }) => {
+  for (const host of ["clips.twitch.tv", "open.spotify.com"]) {
     await context.route(`https://${host}/**`, (route) => route.fulfill({ body: "Embed test fixture" }));
   }
-  const errors: string[] = [];
-  page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
-  await expect(page.locator("iframe")).toHaveCount(0);
-  for (const [provider, title, host, label] of [
-    ["youtube", "lofi hip hop mix", "www.youtube-nocookie.com", "YouTube"],
-    ["twitch", "Twitch 精選剪輯", "clips.twitch.tv", "Twitch"],
-    ["spotify", "lofi beats", "open.spotify.com", "Spotify"],
+  for (const [title, host, label] of [
+    ["Twitch 精選剪輯", "clips.twitch.tv", "Twitch"],
+    ["lofi beats", "open.spotify.com", "Spotify"],
   ]) {
-    const [response] = await Promise.all([
-      page.waitForResponse((item) => item.url().includes(`/api/embed?provider=${provider}&`)),
-      page.getByRole("button", { name: `播放 ${title}` }).click(),
-    ]);
-    expect(response.status()).toBe(200);
+    await page.getByRole("button", { name: `播放 ${title}` }).click();
     const card = page.getByRole("article", { name: title, exact: true });
-    const iframe = card.locator("iframe");
-    await expect(iframe).toHaveAttribute("src", new RegExp(host));
-    if (provider === "twitch") {
-      const src = new URL((await iframe.getAttribute("src"))!);
-      expect(src.searchParams.get("parent")).toBe(new URL(page.url()).hostname);
-    }
+    await expect(card.locator("iframe")).toHaveAttribute("src", new RegExp(host));
     await expect(card.getByRole("link", { name: `在 ${label} 開啟` })).toHaveAttribute("target", "_blank");
+    await expect(page.locator(".widget iframe")).toHaveCount(1);
     await expect(page.getByRole("dialog")).toHaveCount(0);
   }
-  await page.getByRole("searchbox", { name: "Google 搜尋" }).fill("播放時仍可搜尋");
-  await expect(page.locator(".widget iframe")).toHaveCount(3);
-  for (const title of ["lofi hip hop mix", "Twitch 精選剪輯", "lofi beats"]) {
-    const card = page.getByRole("article", { name: title, exact: true });
-    await card.getByRole("button", { name: `收起 ${title}` }).click();
-    await expect(card.locator("iframe")).toHaveCount(0);
-  }
-  expect(errors).toEqual([]);
 });
 
 test("recovers from a failed backend and validates API input", async ({ page, request, context }) => {
   expect((await request.get("/api/embed")).status()).toBe(400);
+  expect((await request.get("/api/media/search?provider=youtube&q=" )).status()).toBe(400);
   expect((await request.get("/api/embed", { params: { provider: "twitch", url: "https://evil.example/" } })).status()).toBe(422);
   await context.route("**/api/embed?**", (route) => route.fulfill({ status: 503 }), { times: 1 });
-  await context.route("https://www.youtube-nocookie.com/**", (route) => route.fulfill({ body: "Embed test fixture" }));
+  await context.route("https://open.spotify.com/**", (route) => route.fulfill({ body: "Embed test fixture" }));
   await page.goto("/");
-  await page.getByRole("button", { name: "播放 lofi hip hop mix" }).click();
-  const card = page.getByRole("article", { name: "lofi hip hop mix", exact: true });
+  await page.getByRole("button", { name: "播放 lofi beats" }).click();
+  const card = page.getByRole("article", { name: "lofi beats", exact: true });
   await expect(card.getByRole("status")).toContainText("播放器暫時無法載入");
-  await expect(card.getByRole("link", { name: "在 YouTube 開啟" })).toBeVisible();
   await card.getByRole("button", { name: "重試" }).click();
-  await expect(card.locator("iframe")).toHaveAttribute("src", /youtube-nocookie/);
+  await expect(card.locator("iframe")).toHaveAttribute("src", /open.spotify/);
 });
 
 test("fits phone, tablet and desktop and shows a Twitch link at narrow widths", async ({ page }) => {

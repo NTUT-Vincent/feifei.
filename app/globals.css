@@ -356,3 +356,23 @@ legend { padding: 0; margin-bottom: 8px; font-size: .875rem; font-weight: 650; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* Content controls stay inside the existing warm, quiet cards. */
+.widget-caption { gap: 8px; justify-content: space-between; }
+.widget-caption h3 { min-width: 0; }
+.change-content { font-size: .78rem; padding-inline: 8px; }
+.media-picker { padding: 12px; border-top: 1px solid var(--line); background: color-mix(in srgb, var(--wash) 25%, var(--panel)); }
+.media-search { display: flex; gap: 6px; }
+.media-search input { width: 100%; min-width: 0; padding: 9px; border: 1px solid var(--line); border-radius: 9px; background: var(--paper); color: var(--text); font-size: 16px; }
+.media-picker .form-error { margin-top: 10px; }
+.media-results { max-height: 300px; overflow: auto; }
+.media-results li { display: flex; gap: 3px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.media-result-title, .queue-title { flex: 1; min-width: 0; overflow-wrap: anywhere; font-size: .85rem; line-height: 1.5; }
+.media-result-title small { display: block; color: var(--muted); font-size: .75rem; }
+.queue-title { background: none; color: var(--text); border: 0; text-align: left; padding: 5px 0; }
+.queue-title[aria-current], .playback-controls [aria-pressed="true"] { color: var(--accent); background: var(--wash); border-radius: 8px; }
+.queue-header { display: flex; justify-content: space-between; margin-top: 14px; font-size: .8rem; color: var(--muted); }
+.playback-controls { display: flex; flex-wrap: wrap; gap: 3px; align-items: center; margin-top: 7px; }
+.playback-controls a { margin-left: auto; font-size: .75rem; }
+.playback-error { font-size: .8rem; padding: 8px 0; color: var(--accent); }
+.youtube-host { position: absolute; inset: 0; }

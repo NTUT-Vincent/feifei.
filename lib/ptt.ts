@@ -63,7 +63,10 @@ export async function collectPttPosts(load = fetchPttBoard): Promise<PttResponse
   const unavailableBoards: string[] = [];
   results.forEach((result, index) => {
     if (result.status === "fulfilled") items.push(...result.value);
-    else unavailableBoards.push(pttBoards[index].board);
+    else {
+      unavailableBoards.push(pttBoards[index].board);
+      console.warn("PTT Atom feed unavailable", pttBoards[index].board, result.reason instanceof Error ? result.reason.message : "unknown");
+    }
   });
   return { items: mixPttPosts(items), unavailableBoards };
 }

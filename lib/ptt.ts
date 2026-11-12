@@ -13,6 +13,8 @@ export const pttBoards: PttBoard[] = [
   { board: "Steam", category: "games", newsCategory: "games" },
   { board: "PC_Shopping", category: "tech", newsCategory: "topics" },
   { board: "movie", category: "movies", newsCategory: "topics" },
+  { board: "NBA", category: "sports", newsCategory: "topics" },
+  { board: "Baseball", category: "sports", newsCategory: "topics" },
 ];
 
 const PTT_ORIGIN = "https://www.ptt.cc";

@@ -2,7 +2,7 @@
 
 import { ArrowUpRight, RefreshCw } from "lucide-react";
 import { useEffect, useState } from "react";
-import { newsCategories, type NewsResponse } from "../lib/news";
+import { newsCategories, newsLanguages, type NewsResponse } from "../lib/news";
 
 const dateFormat = new Intl.DateTimeFormat("zh-TW", { month: "numeric", day: "numeric", timeZone: "Asia/Taipei" });
 
@@ -10,6 +10,7 @@ export function NewsWall() {
   const [data, setData] = useState<NewsResponse | null>(null);
   const [category, setCategory] = useState<keyof typeof newsCategories>("all");
   const [page, setPage] = useState(0);
+  const [language, setLanguage] = useState<keyof typeof newsLanguages>("all");
   const [attempt, setAttempt] = useState(0);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -29,7 +30,7 @@ export function NewsWall() {
     return () => { active = false; clearTimeout(timeout); controller.abort(); };
   }, [attempt]);
 
-  const items = (data?.items ?? []).filter((item) => category === "all" || item.category === category);
+  const items = (data?.items ?? []).filter((item) => (category === "all" || item.category === category) && (language === "all" || item.language === language));
   const visible = items.slice(page * 9, (page + 1) * 9);
 
   return (
@@ -43,6 +44,11 @@ export function NewsWall() {
       <div className="news-filters" role="group" aria-label="新聞分類">
         {Object.entries(newsCategories).map(([key, label]) => (
           <button key={key} type="button" className="outline-button" aria-pressed={category === key} onClick={() => { setCategory(key as keyof typeof newsCategories); setPage(0); }}>{label}</button>
+        ))}
+      </div>
+      <div className="news-filters" role="group" aria-label="新聞語言">
+        {Object.entries(newsLanguages).map(([key, label]) => (
+          <button key={key} type="button" className="outline-button" aria-pressed={language === key} onClick={() => { setLanguage(key as keyof typeof newsLanguages); setPage(0); }}>{label}</button>
         ))}
       </div>
       {loading ? <p className="news-state" role="status">正在找新鮮事…</p> : error ? (

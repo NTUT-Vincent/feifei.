@@ -3,6 +3,7 @@ import { mixNews, type NewsCategory, type NewsItem, type NewsLanguage, type News
 
 export type NewsSource = { name: string; url: string; host: string; category: NewsCategory; language: NewsLanguage };
 export const newsSources: NewsSource[] = [
+  { name: "PTT Lifeismoney", url: "https://www.ptt.cc/atom/Lifeismoney.xml", host: "ptt.cc", category: "topics", language: "zh" },
   { name: "PTT C_Chat", url: "https://www.ptt.cc/atom/C_Chat.xml", host: "ptt.cc", category: "anime", language: "zh" },
   { name: "PTT movie", url: "https://www.ptt.cc/atom/movie.xml", host: "ptt.cc", category: "topics", language: "zh" },
   { name: "PTT Steam", url: "https://www.ptt.cc/atom/Steam.xml", host: "ptt.cc", category: "games", language: "zh" },

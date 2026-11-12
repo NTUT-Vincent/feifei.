@@ -45,7 +45,7 @@ test('one failed feed does not discard other sources; total failure is explicit'
 });
 
 test('expanded culture news sources have unique names, HTTPS feeds and expected categories', () => {
-  assert.equal(newsSources.length, 13);
+  assert.equal(newsSources.length, 14);
   assert.equal(new Set(newsSources.map((feed) => feed.name)).size, newsSources.length);
   for (const feed of newsSources) {
     const url = new URL(feed.url);
@@ -98,6 +98,7 @@ test('PTT official Atom feed parsing preserves safe article URLs and Chinese sou
 
 test('PTT source registry lists official public boards without gossip board', () => {
   const expected = {
+    Lifeismoney: 'topics',
     C_Chat: 'anime',
     movie: 'topics',
     Steam: 'games',

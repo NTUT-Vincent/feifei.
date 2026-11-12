@@ -9,16 +9,9 @@ export type PttBoard = { board: string; category: PttCategory; newsCategory: New
 
 export const pttBoards: PttBoard[] = [
   { board: "Lifeismoney", category: "life", newsCategory: "topics" },
-  { board: "car", category: "life", newsCategory: "topics" },
-  { board: "Japan_Travel", category: "life", newsCategory: "topics" },
-  { board: "cat", category: "life", newsCategory: "topics" },
   { board: "C_Chat", category: "anime", newsCategory: "anime" },
   { board: "Steam", category: "games", newsCategory: "games" },
-  { board: "NSwitch", category: "games", newsCategory: "games" },
-  { board: "LoL", category: "games", newsCategory: "games" },
   { board: "PC_Shopping", category: "tech", newsCategory: "topics" },
-  { board: "Tech_Job", category: "tech", newsCategory: "topics" },
-  { board: "iOS", category: "tech", newsCategory: "topics" },
   { board: "movie", category: "movies", newsCategory: "topics" },
 ];
 

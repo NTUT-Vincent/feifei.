@@ -62,3 +62,13 @@ YouTube 使用官方 IFrame API，支援影片、原生 Playlist、網址起始�
 搜尋 Route Handler：`GET /api/media/search?provider=youtube|twitch&q=...`。Vercel Preview/Production 分別設定 `YOUTUBE_API_KEY`、`TWITCH_CLIENT_ID`、`TWITCH_CLIENT_SECRET`，皆為 server-only。Twitch App Token 自動更新，401 後重試一次。搜尋有 8 秒 timeout、5 分鐘快取及每個執行個體每小時 60 次的上游請求保護；這不是跨執行個體的全域限流，較大規模公開流量應搭配平台限流與供應商配額。未設定憑證或供應商錯誤時，仍可貼網址。
 
 驗證：`npm test`、`npm run lint`、`npm run typecheck`、`npm run build`。`npm run test:e2e` 包含 SDK fixture 與卡片互動測試，fixture 不代表供應商實際影音播放驗證。嵌入限制、登入、地區和 Twitch 最小寬度仍受平台限制。最新頻道自動更新、跨平台 SDK 音訊暫停、續播時間記憶不包含在這版。
+
+### 新鮮事
+
+首頁小工具下方提供動漫、音樂、迷因、遊戲與網路話題新聞牆，可切換分類或「換一批」。透過 `GET /api/news` 讀取 RSS，不需要 API Key。來源為 4Gamers、Anime News Network、吹音樂，以及 Know Your Meme 的 entries / newsfeed。
+
+- 每個來源獨立快取 15 分鐘；並行讀取、8 秒逾時，單一來源失效不影響其他來源。全部來源失效回傳 503，前端可重試。
+- 保留最近 14 天有有效日期的新聞；依 URL / 標題去重，各分類交錯排列，每批 9 則。分類與排除八卦採關鍵字規則，並非 AI 語意審核。「話題」來自網路文化 RSS，並非即時熱度排行。
+- 只顯示標題、來源、發布日期及原文連結，不轉載摘要、全文或圖片。英文來源保留英文標題。
+- 上游來源與分類規則集中於 `lib/news-feeds.ts`。來源可能變更或封鎖 RSS；公開 RSS 不等於授權任意商業轉載，營利前需另外確認各站條款。
+- `tests/news.test.ts` 涵蓋解析、分類、日期、URL 安全、內容過濾、混排去重與部分／全部來源失效。

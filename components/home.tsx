@@ -17,6 +17,7 @@ import { Dialog } from "./dialog";
 import { ShortcutForm, WidgetForm } from "./edit-forms";
 import { SiteIcon } from "./icons";
 import { WidgetCard } from "./widget-card";
+import { NewsWall } from "./news-wall";
 
 type Overlay =
   | { type: "preferences" | "reset" | "add-widget" }
@@ -169,6 +170,7 @@ export function Home() {
             ))}
           </div>
         </section>
+        <NewsWall />
       </main>
 
       {overlay?.type === "preferences" && (

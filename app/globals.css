@@ -376,3 +376,27 @@ legend { padding: 0; margin-bottom: 8px; font-size: .875rem; font-weight: 650; }
 .playback-controls a { margin-left: auto; font-size: .75rem; }
 .playback-error { font-size: .8rem; padding: 8px 0; color: var(--accent); }
 .youtube-host { position: absolute; inset: 0; }
+
+.news-wall { margin-top: 34px; border-top: 1px solid var(--line); padding-top: 20px; }
+.news-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.news-filters .outline-button { padding: 8px 16px; border-radius: 999px; }
+.news-filters button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.news-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.news-grid > li { min-width: 0; }
+.news-card { display: flex; flex-direction: column; height: 100%; min-height: 178px; padding: 19px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); transition: border-color .15s; }
+.news-card:hover { border-color: var(--accent); }
+.news-card-top { display: flex; align-items: center; justify-content: space-between; color: var(--accent); gap: 10px; }
+.news-category { font-size: .75rem; font-weight: 650; }
+.news-card h3 { font-size: .97rem; line-height: 1.65; font-weight: 650; margin: 10px 0 18px; overflow-wrap: anywhere; }
+.news-meta { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; margin-top: auto; color: var(--muted); font-size: .75rem; }
+.news-meta time { white-space: nowrap; }
+.news-state { min-height: 160px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px; color: var(--muted); font-size: .875rem; }
+.news-notice { color: var(--muted); font-size: .8rem; margin-bottom: 12px; }
+@media (max-width: 900px) { .news-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) {
+  .news-grid { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .news-card { min-height: 145px; padding: 16px; }
+  .news-wall { margin-top: 24px; padding-top: 14px; }
+  .news-filters { gap: 6px; }
+  .news-filters .outline-button { padding: 8px 13px; }
+}

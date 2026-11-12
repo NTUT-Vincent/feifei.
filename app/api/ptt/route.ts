@@ -18,7 +18,9 @@ const cachedHotBoard = unstable_cache(
 
 export async function GET(request: Request) {
   const mode = new URL(request.url).searchParams.get("mode") === "latest" ? "latest" : "hot";
-  const result = mode === "hot" ? await collectPttHot(cachedHotBoard) : await collectPttPosts(cachedBoard);
+  const hot = mode === "hot" ? await collectPttHot(cachedHotBoard) : null;
+  // Never claim newest posts are popular when PTT blocks listing requests.
+  const result = hot?.items.length ? hot : await collectPttPosts(cachedBoard);
   const failed = result.unavailableBoards.length > 0;
   return Response.json(result, {
     status: !result.items.length && failed ? 503 : 200,

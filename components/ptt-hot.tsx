@@ -10,6 +10,7 @@ export function PttHot() {
   const [data, setData] = useState<PttResponse | null>(null);
   const [category, setCategory] = useState<keyof typeof pttCategories>("all");
   const [page, setPage] = useState(0);
+  const [mode, setMode] = useState<"hot" | "latest">("hot");
   const [attempt, setAttempt] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -18,7 +19,7 @@ export function PttHot() {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 15_000);
     let active = true;
-    fetch("/api/ptt", { signal: controller.signal })
+    fetch(`/api/ptt?mode=${mode}`, { signal: controller.signal })
       .then(async (response) => {
         if (!response.ok) throw new Error("PTT is unavailable");
         const result: PttResponse = await response.json();
@@ -27,7 +28,7 @@ export function PttHot() {
       .catch(() => { if (active) setError(true); })
       .finally(() => { clearTimeout(timeout); if (active) setLoading(false); });
     return () => { active = false; clearTimeout(timeout); controller.abort(); };
-  }, [attempt]);
+  }, [attempt, mode]);
 
   const items = (data?.items ?? []).filter((item) => category === "all" || item.category === category);
   const visible = items.slice(page * 9, (page + 1) * 9);
@@ -40,6 +41,12 @@ export function PttHot() {
           <RefreshCw size={15} />換一批
         </button>
       </header>
+      <div className="news-filters" role="group" aria-label="PTT 排序">
+        {(["hot", "latest"] as const).map((value) => (
+          <button type="button" className="outline-button" key={value} aria-pressed={mode === value}
+            onClick={() => { setMode(value); setPage(0); setLoading(true); setError(false); }}>{value === "hot" ? "熱門" : "最新"}</button>
+        ))}
+      </div>
       <div className="news-filters" role="group" aria-label="PTT 話題分類">
         {Object.entries(pttCategories).map(([key, label]) => (
           <button type="button" className="outline-button" key={key} aria-pressed={category === key}
@@ -63,8 +70,8 @@ export function PttHot() {
                 </div>
                 <h3>{item.title}</h3>
                 <div className="news-meta">
-                  <span>PTT</span>
-                  <time dateTime={item.publishedAt}>{dateFormat.format(new Date(item.publishedAt))}</time>
+                  <span>{mode === "hot" ? `推文 ${item.heat === 100 ? "爆" : item.heat ?? "—"}` : "PTT"}</span>
+                  {mode === "latest" ? <time dateTime={item.publishedAt}>{dateFormat.format(new Date(item.publishedAt))}</time> : null}
 
                 </div>
               </a>

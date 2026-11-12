@@ -52,3 +52,13 @@ Playwright 預設啟動本機 production build。設定 `FEIFEI_BASE_URL` 可對
 ## 部署
 
 在 Vercel 將 GitHub repository 連到 Next.js 專案，使用 Node.js 24。App Router 的 Route Handler 需要伺服器執行環境。
+
+## 卡片內選內容
+
+點卡片的「換內容」，輸入 YouTube/Twitch 關鍵字或貼上支援的網址。搜尋結果的播放鍵會套用至卡片；加號會加入待播清單（上限 30）。Spotify 可直接貼上內容網址。清單及隨機／循環偏好沿用 `feifei.settings` 儲存，舊版設定相容。
+
+YouTube 使用官方 IFrame API，支援影片、原生 Playlist、網址起始秒數、自訂清單、上一個／下一個、隨機和循環。清單存在時循環整份自訂清單，沒有自訂清單時循環單一影片；原生 Playlist 交由官方播放器處理。首次開啟仍需點播放器播放，遵守瀏覽器政策。切換卡片會卸載先前播放器，確保只有一個嵌入可出聲。Twitch/Spotify 清單項目由使用者點選切換，沒有宣稱支援自動接續。
+
+搜尋 Route Handler：`GET /api/media/search?provider=youtube|twitch&q=...`。Vercel Preview/Production 分別設定 `YOUTUBE_API_KEY`、`TWITCH_CLIENT_ID`、`TWITCH_CLIENT_SECRET`，皆為 server-only。Twitch App Token 自動更新，401 後重試一次。搜尋有 8 秒 timeout、5 分鐘快取及每個執行個體每小時 60 次的上游請求保護；這不是跨執行個體的全域限流，較大規模公開流量應搭配平台限流與供應商配額。未設定憑證或供應商錯誤時，仍可貼網址。
+
+驗證：`npm test`、`npm run lint`、`npm run typecheck`、`npm run build`。`npm run test:e2e` 包含 SDK fixture 與卡片互動測試，fixture 不代表供應商實際影音播放驗證。嵌入限制、登入、地區和 Twitch 最小寬度仍受平台限制。最新頻道自動更新、跨平台 SDK 音訊暫停、續播時間記憶不包含在這版。

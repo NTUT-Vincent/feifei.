@@ -3,12 +3,18 @@ import dynamic from "next/dynamic";
 import { useRef, useState, type CSSProperties, type DragEvent } from "react";
 import { boards, widgetCatalog } from "../lib/catalog";
 import type { Widget } from "../lib/settings";
+import { MediaPicker } from "./media-picker";
+import { YouTubePlayer } from "./youtube-player";
+import { nextIndex } from "../lib/media";
 import { SiteIcon } from "./icons";
 
 const MediaPlayer = dynamic(() => import("./media-player").then((module) => module.MediaPlayer));
 
 type CardProps = {
   widget: Widget;
+  expanded: boolean;
+  onExpand: (open: boolean) => void;
+  onChange: (patch: Partial<Widget>) => void;
   editing: boolean;
   canMoveLeft: boolean;
   canMoveRight: boolean;
@@ -24,12 +30,18 @@ type CardProps = {
 };
 
 export function WidgetCard({
-  widget, editing, canMoveLeft, canMoveRight, dragging, dropTarget,
+  widget, expanded, onExpand: setExpanded, onChange, editing, canMoveLeft, canMoveRight, dragging, dropTarget,
   onEdit, onRemove, onMove, onDragStart, onDragEnd, onDragOver, onDrop,
 }: CardProps) {
   const { type, title, width } = widget;
   const service = widgetCatalog[type];
-  const [expanded, setExpanded] = useState(false);
+  const [choosing, setChoosing] = useState(false);
+  const queue = widget.queue ?? [];
+  function advance(direction: number) {
+    const index = queue.findIndex((item) => item.url === widget.url);
+    const next = direction < 0 ? (index > 0 ? index - 1 : widget.loop ? queue.length - 1 : null) : nextIndex(index, queue.length, Boolean(widget.shuffle), Boolean(widget.loop));
+    if (next !== null && queue[next]) onChange({ url: queue[next].url, title: queue[next].title.slice(0, 40) });
+  }
   const restoreFocus = useRef(false);
 
   return (
@@ -66,7 +78,7 @@ export function WidgetCard({
           </li>)}
         </ul>
       ) : expanded ? (
-        <div className="inline-player"><MediaPlayer key={widget.url} provider={type} url={widget.url} title={title} /></div>
+        <div className="inline-player">{type === "youtube" ? <YouTubePlayer url={widget.url} shuffle={Boolean(widget.shuffle)} loop={Boolean(widget.loop)} onShuffle={() => onChange({ shuffle: !widget.shuffle })} onLoop={() => onChange({ loop: !widget.loop })} onNext={() => advance(1)} onPrevious={() => advance(-1)} hasQueue={queue.length > 0} /> : <MediaPlayer key={widget.url} provider={type} url={widget.url} title={title} />}</div>
       ) : (
         <button ref={(element) => {
           if (element && restoreFocus.current) {
@@ -78,7 +90,8 @@ export function WidgetCard({
           <span className="cover-play" aria-hidden><Play size={17} fill="currentColor" /></span>
         </button>
       )}
-      <div className="widget-caption"><h3>{title}</h3></div>
+      <div className="widget-caption"><h3>{title}</h3>{type !== "ptt" && <button className="plain-button change-content" aria-expanded={choosing} onClick={() => setChoosing(!choosing)}>{choosing ? "收起設定" : "換內容"}</button>}</div>
+      {choosing && type !== "ptt" && <MediaPicker widget={widget} onChange={onChange} onPlay={() => setExpanded(true)} />}
       {editing && <div className="widget-edit-actions">
         <button type="button" className="icon-button" disabled={!canMoveLeft} aria-label={`${title} 往前移`} onClick={() => onMove(-1)}><ArrowLeft size={16} /></button>
         <button type="button" className="icon-button" disabled={!canMoveRight} aria-label={`${title} 往後移`} onClick={() => onMove(1)}><ArrowRight size={16} /></button>

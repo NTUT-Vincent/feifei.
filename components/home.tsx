@@ -26,6 +26,7 @@ type Overlay =
 export function Home() {
   const raw = useSyncExternalStore(subscribeSettings, readSavedSettings, serverSettings);
   const settings = useMemo(() => readSettings(raw), [raw]);
+  const [activePlayer, setActivePlayer] = useState<string | null>(null);
   const [editing, setEditing] = useState(false);
   const [overlay, setOverlay] = useState<Overlay | null>(null);
   const [dragging, setDragging] = useState<string | null>(null);
@@ -140,6 +141,9 @@ export function Home() {
               <WidgetCard
                 key={widget.id}
                 widget={widget}
+                expanded={activePlayer === widget.id}
+                onExpand={(open) => setActivePlayer(open ? widget.id : null)}
+                onChange={(patch) => updateSettings((current) => ({ ...current, widgets: current.widgets.map((item) => item.id === widget.id ? { ...item, ...patch } : item) }))}
                 editing={editing}
                 canMoveLeft={index > 0}
                 canMoveRight={index < settings.widgets.length - 1}

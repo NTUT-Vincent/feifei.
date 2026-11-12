@@ -70,7 +70,10 @@ export function PttHot() {
               </a>
             </li>
           ))}
-        </ul> : <p className="news-state" role="status">這個分類最近沒有新討論</p>}
+        </ul> : category === "tech" ? <div className="news-state" role="status">
+          <p>科技看板暫時無法讀取</p>
+          <a className="outline-button" href="https://www.ptt.cc/bbs/PC_Shopping/index.html" target="_blank" rel="noopener noreferrer">前往 PC_Shopping</a>
+        </div> : <p className="news-state" role="status">這個分類最近沒有新討論</p>}
       </>}
     </section>
   );

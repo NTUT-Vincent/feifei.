@@ -9,9 +9,6 @@ export type PttBoard = { board: string; category: PttCategory; newsCategory: New
 
 export const pttBoards: PttBoard[] = [
   { board: "Lifeismoney", category: "life", newsCategory: "topics" },
-  { board: "WomenTalk", category: "life", newsCategory: "topics" },
-  { board: "MobileComm", category: "tech", newsCategory: "topics" },
-  { board: "PC_Shopping", category: "tech", newsCategory: "topics" },
   { board: "C_Chat", category: "anime", newsCategory: "anime" },
   { board: "Steam", category: "games", newsCategory: "games" },
   { board: "movie", category: "movies", newsCategory: "topics" },

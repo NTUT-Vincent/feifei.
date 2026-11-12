@@ -400,3 +400,6 @@ legend { padding: 0; margin-bottom: 8px; font-size: .875rem; font-weight: 650; }
   .news-filters { gap: 6px; }
   .news-filters .outline-button { padding: 8px 13px; }
 }
+
+.ptt-hot-card .news-meta { align-items: center; }
+.ptt-hot-card .news-meta svg { margin-left: auto; }

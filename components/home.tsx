@@ -18,6 +18,7 @@ import { ShortcutForm, WidgetForm } from "./edit-forms";
 import { SiteIcon } from "./icons";
 import { WidgetCard } from "./widget-card";
 import { NewsWall } from "./news-wall";
+import { PttHot } from "./ptt-hot";
 
 type Overlay =
   | { type: "preferences" | "reset" | "add-widget" }
@@ -170,6 +171,7 @@ export function Home() {
             ))}
           </div>
         </section>
+        <PttHot />
         <NewsWall />
       </main>
 

@@ -60,9 +60,9 @@ async function fetchPttListing(board: string): Promise<string> {
   const response = await fetch(PTT_ORIGIN + "/bbs/" + board + "/index.html", {
     signal: AbortSignal.timeout(8_000),
     cache: "no-store",
-    headers: { Accept: "text/html", "User-Agent": "Feifei/1.0 Public PTT Reader" },
+    headers: { Accept: "text/html,application/xhtml+xml", "User-Agent": "Mozilla/5.0 (compatible; Feifei/1.0; +https://github.com/NTUT-Vincent/feifei.)", Cookie: "over18=1" },
   });
-  if (!response.ok || !response.body) throw new Error("PTT listing unavailable");
+  if (!response.ok || !response.body) throw new Error("PTT listing HTTP " + response.status);
   const reader = response.body.getReader();
   const chunks: Uint8Array[] = [];
   let bytes = 0;

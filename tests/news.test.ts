@@ -45,7 +45,7 @@ test('one failed feed does not discard other sources; total failure is explicit'
 });
 
 test('expanded culture news sources have unique names, HTTPS feeds and expected categories', () => {
-  assert.equal(newsSources.length, 8);
+  assert.equal(newsSources.length, 7);
   assert.equal(new Set(newsSources.map((feed) => feed.name)).size, newsSources.length);
   for (const feed of newsSources) {
     const url = new URL(feed.url);
@@ -54,11 +54,10 @@ test('expanded culture news sources have unique names, HTTPS feeds and expected 
   }
   assert.equal(newsSources.find((feed) => feed.name === '巴哈姆特 GNN')?.category, 'games');
   assert.equal(newsSources.find((feed) => feed.name === 'NME Music')?.category, 'music');
-  assert.equal(newsSources.find((feed) => feed.name === 'Siliconera')?.category, 'games');
 });
 
 test('new sources classify anime headlines and reject off-domain article links', async () => {
-  for (const name of ['巴哈姆特 GNN', 'Siliconera']) {
+  for (const name of ['巴哈姆特 GNN']) {
     const feed = newsSources.find((item) => item.name === name)!;
     const articleUrl = `https://${feed.host}/example-article`;
     const accepted = await parseNewsFeed(xml(entry('New anime announcement', articleUrl)), feed, now);

@@ -4,7 +4,7 @@ import { collectNews, newsSources, parseNewsFeed } from '../lib/news-feeds.ts';
 import { mixNews, type NewsItem } from '../lib/news.ts';
 
 const now = Date.parse('2026-11-12T08:00:00Z');
-const source = newsSources[0];
+const source = newsSources.find((item) => item.name === '4Gamers')!;
 const xml = (items: string) => `<?xml version="1.0"?><rss version="2.0"><channel><title>Test</title>${items}</channel></rss>`;
 const entry = (title: string, link = 'https://www.4gamers.com.tw/news/1', date = 'Thu, 12 Nov 2026 07:00:00 GMT') => `<item><title><![CDATA[${title}]]></title><link>${link}</link><pubDate>${date}</pubDate></item>`;
 
@@ -42,4 +42,28 @@ test('one failed feed does not discard other sources; total failure is explicit'
   const failed = await collectNews(async () => { throw new Error('unavailable'); });
   assert.equal(failed.items.length, 0);
   assert.equal(failed.unavailableSources.length, newsSources.length);
+});
+
+test('expanded culture news sources have unique names, HTTPS feeds and expected categories', () => {
+  assert.equal(newsSources.length, 8);
+  assert.equal(new Set(newsSources.map((feed) => feed.name)).size, newsSources.length);
+  for (const feed of newsSources) {
+    const url = new URL(feed.url);
+    assert.equal(url.protocol, 'https:');
+    assert.ok(url.hostname === feed.host || url.hostname.endsWith(`.${feed.host}`));
+  }
+  assert.equal(newsSources.find((feed) => feed.name === '巴哈姆特 GNN')?.category, 'games');
+  assert.equal(newsSources.find((feed) => feed.name === 'NME Music')?.category, 'music');
+  assert.equal(newsSources.find((feed) => feed.name === 'Siliconera')?.category, 'games');
+});
+
+test('new sources classify anime headlines and reject off-domain article links', async () => {
+  for (const name of ['巴哈姆特 GNN', 'Siliconera']) {
+    const feed = newsSources.find((item) => item.name === name)!;
+    const articleUrl = `https://${feed.host}/example-article`;
+    const accepted = await parseNewsFeed(xml(entry('New anime announcement', articleUrl)), feed, now);
+    assert.equal(accepted.length, 1);
+    assert.equal(accepted[0].category, 'anime');
+    assert.deepEqual(await parseNewsFeed(xml(entry('New anime announcement', 'https://example.org/evil')), feed, now), []);
+  }
 });

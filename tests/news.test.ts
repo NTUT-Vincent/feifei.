@@ -27,7 +27,7 @@ test('RSS fails closed on malformed XML, empty feeds, entities and oversized bod
   }
 });
 
-const item = (id: string, category: NewsItem['category']): NewsItem => ({ id, title: id, url: `https://example.com/${id}`, source: 'Test', category, publishedAt: '2026-11-12T07:00:00.000Z' });
+const item = (id: string, category: NewsItem['category']): NewsItem => ({ id, title: id, url: `https://example.com/${id}`, source: 'Test', category, language: 'en', publishedAt: '2026-11-12T07:00:00.000Z' });
 test('mixed wall deduplicates URLs and normalized titles while balancing categories', () => {
   const entries = [item('a', 'games'), item('b', 'games'), item('c', 'games'), item('d', 'music'), item('e', 'anime'), item('f', 'memes')];
   const result = mixNews([...entries, entries[0], { ...item('other', 'music'), title: ' A ' }]);
@@ -37,7 +37,7 @@ test('mixed wall deduplicates URLs and normalized titles while balancing categor
 
 test('one failed feed does not discard other sources; total failure is explicit', async () => {
   const partial = await collectNews(async (feed) => { if (feed.name === source.name) throw new Error('timeout'); return [item(feed.name, feed.category)]; });
-  assert.equal(partial.items.length, 4);
+  assert.equal(partial.items.length, newsSources.length - 1);
   assert.deepEqual(partial.unavailableSources, ['4Gamers']);
   const failed = await collectNews(async () => { throw new Error('unavailable'); });
   assert.equal(failed.items.length, 0);
@@ -45,12 +45,13 @@ test('one failed feed does not discard other sources; total failure is explicit'
 });
 
 test('expanded culture news sources have unique names, HTTPS feeds and expected categories', () => {
-  assert.equal(newsSources.length, 7);
+  assert.equal(newsSources.length, 10);
   assert.equal(new Set(newsSources.map((feed) => feed.name)).size, newsSources.length);
   for (const feed of newsSources) {
     const url = new URL(feed.url);
     assert.equal(url.protocol, 'https:');
     assert.ok(url.hostname === feed.host || url.hostname.endsWith(`.${feed.host}`));
+    assert.ok(['zh', 'en'].includes(feed.language));
   }
   assert.equal(newsSources.find((feed) => feed.name === '巴哈姆特 GNN')?.category, 'games');
   assert.equal(newsSources.find((feed) => feed.name === 'NME Music')?.category, 'music');
@@ -64,5 +65,13 @@ test('new sources classify anime headlines and reject off-domain article links',
     assert.equal(accepted.length, 1);
     assert.equal(accepted[0].category, 'anime');
     assert.deepEqual(await parseNewsFeed(xml(entry('New anime announcement', 'https://example.org/evil')), feed, now), []);
+  }
+});
+
+test('Chinese and English RSS sources preserve their language on news items', async () => {
+  for (const name of ['巴哈姆特 GNN', 'NME Music']) {
+    const feed = newsSources.find((item) => item.name === name)!;
+    const articles = await parseNewsFeed(xml(entry('New anime announcement', `https://${feed.host}/article`)), feed, now);
+    assert.equal(articles[0].language, feed.language);
   }
 });

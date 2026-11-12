@@ -13,7 +13,7 @@ async function twitchToken(): Promise<string> {
       method: 'POST', cache: 'no-store', signal: AbortSignal.timeout(8000),
       body: new URLSearchParams({ client_id: process.env.TWITCH_CLIENT_ID!, client_secret: process.env.TWITCH_CLIENT_SECRET!, grant_type: 'client_credentials' }),
     });
-    if (!response.ok) throw new Error('auth');
+    if (!response.ok) throw new Error(`twitch_auth_${response.status}`);
     const data = await response.json();
     token = { value: data.access_token, until: Date.now() + Math.max(0, data.expires_in - 120) * 1000 };
     return token.value;
@@ -35,21 +35,23 @@ export async function GET(request: NextRequest) {
     if (provider === 'youtube') {
       const params = new URLSearchParams({ part: 'snippet', type: 'video', videoEmbeddable: 'true', maxResults: '8', q, key: process.env.YOUTUBE_API_KEY! });
       const response = await fetch(`https://www.googleapis.com/youtube/v3/search?${params}`, { signal: AbortSignal.timeout(8000) });
-      if (!response.ok) throw new Error('provider');
+      if (!response.ok) throw new Error(`provider_${response.status}`);
       const data = await response.json();
       items = (data.items ?? []).map((item: { id: { videoId: string }; snippet: { title: string; channelTitle: string } }) => ({ url: `https://www.youtube.com/watch?v=${item.id.videoId}`, title: item.snippet.title, detail: item.snippet.channelTitle }));
     } else {
       const search = async () => fetch(`https://api.twitch.tv/helix/search/channels?${new URLSearchParams({ query: q, first: '8' })}`, { headers: { 'Client-Id': process.env.TWITCH_CLIENT_ID!, Authorization: `Bearer ${await twitchToken()}` }, signal: AbortSignal.timeout(8000), cache: 'no-store' });
       let response = await search();
       if (response.status === 401) { token = undefined; response = await search(); }
-      if (!response.ok) throw new Error('provider');
+      if (!response.ok) throw new Error(`provider_${response.status}`);
       const data = await response.json();
       items = (data.data ?? []).map((item: { broadcaster_login: string; display_name: string; is_live: boolean }) => ({ url: `https://www.twitch.tv/${item.broadcaster_login}`, title: item.display_name, detail: item.is_live ? '直播中' : '目前離線' }));
     }
     if (cache.size >= 100) cache.delete(cache.keys().next().value!);
     cache.set(key, { items, until: Date.now() + 300000 });
     return NextResponse.json({ items });
-  } catch {
-    return NextResponse.json({ error: '暫時無法搜尋，請稍後再試，或貼上網址播放。' }, { status: 502 });
+  } catch (error) {
+    const reason = error instanceof Error && /^(twitch_auth|provider)_\d+$/.test(error.message) ? error.message : 'upstream_unavailable';
+    console.warn('media-search', provider, reason);
+    return NextResponse.json({ code: reason, error: '暫時無法搜尋，請稍後再試，或貼上網址播放。' }, { status: 502 });
   }
 }

@@ -5,7 +5,6 @@ export const pttCategories = {
   games: "遊戲",
   tech: "科技",
   movies: "電影",
-  sports: "運動",
 } as const;
 
 export type PttCategory = Exclude<keyof typeof pttCategories, "all">;

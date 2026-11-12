@@ -1,15 +1,18 @@
 import Parser from "rss-parser";
-import { mixNews, type NewsCategory, type NewsItem, type NewsResponse } from "./news.ts";
+import { mixNews, type NewsCategory, type NewsItem, type NewsLanguage, type NewsResponse } from "./news.ts";
 
-export type NewsSource = { name: string; url: string; host: string; category: NewsCategory };
+export type NewsSource = { name: string; url: string; host: string; category: NewsCategory; language: NewsLanguage };
 export const newsSources: NewsSource[] = [
-  { name: "巴哈姆特 GNN", url: "https://gnn.gamer.com.tw/rss.xml", host: "gnn.gamer.com.tw", category: "games" },
-  { name: "NME Music", url: "https://www.nme.com/news/music/feed", host: "nme.com", category: "music" },
-  { name: "4Gamers", url: "https://www.4gamers.com.tw/rss/latest-news", host: "4gamers.com.tw", category: "games" },
-  { name: "Anime News Network", url: "https://www.animenewsnetwork.com/news/rss.xml?ann-edition=us", host: "animenewsnetwork.com", category: "anime" },
-  { name: "吹音樂", url: "https://blow.streetvoice.com/feed/", host: "blow.streetvoice.com", category: "music" },
-  { name: "Know Your Meme", url: "https://knowyourmeme.com/memes.rss", host: "knowyourmeme.com", category: "memes" },
-  { name: "Know Your Meme 話題", url: "https://knowyourmeme.com/newsfeed.rss", host: "knowyourmeme.com", category: "topics" },
+  { name: "巴哈姆特 GNN", url: "https://gnn.gamer.com.tw/rss.xml", host: "gnn.gamer.com.tw", category: "games", language: "zh" },
+  { name: "NME Music", url: "https://www.nme.com/news/music/feed", host: "nme.com", category: "music", language: "en" },
+  { name: "Kotaku", url: "https://kotaku.com/rss", host: "kotaku.com", category: "games", language: "en" },
+  { name: "Polygon", url: "https://www.polygon.com/rss/index.xml", host: "polygon.com", category: "games", language: "en" },
+  { name: "Rock Paper Shotgun", url: "https://www.rockpapershotgun.com/feed", host: "rockpapershotgun.com", category: "games", language: "en" },
+  { name: "4Gamers", url: "https://www.4gamers.com.tw/rss/latest-news", host: "4gamers.com.tw", category: "games", language: "zh" },
+  { name: "Anime News Network", url: "https://www.animenewsnetwork.com/news/rss.xml?ann-edition=us", host: "animenewsnetwork.com", category: "anime", language: "en" },
+  { name: "吹音樂", url: "https://blow.streetvoice.com/feed/", host: "blow.streetvoice.com", category: "music", language: "zh" },
+  { name: "Know Your Meme", url: "https://knowyourmeme.com/memes.rss", host: "knowyourmeme.com", category: "memes", language: "en" },
+  { name: "Know Your Meme 話題", url: "https://knowyourmeme.com/newsfeed.rss", host: "knowyourmeme.com", category: "topics", language: "en" },
 ];
 const parser = new Parser();
 const MAX_BYTES = 2_000_000;
@@ -37,7 +40,7 @@ export async function parseNewsFeed(xml: string, source: NewsSource, now = Date.
       else if (/樂團|演唱會|音樂祭|新專輯/.test(title)) category = "music";
       else if (/迷因|爆紅|網路梗/.test(title)) category = "topics";
     }
-    return [{ id: url.href, title, url: url.href, source: source.name, category, publishedAt: new Date(published).toISOString() }];
+    return [{ id: url.href, title, url: url.href, source: source.name, category, language: source.language, publishedAt: new Date(published).toISOString() }];
   });
 }
 

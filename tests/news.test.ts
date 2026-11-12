@@ -45,7 +45,7 @@ test('one failed feed does not discard other sources; total failure is explicit'
 });
 
 test('expanded culture news sources have unique names, HTTPS feeds and expected categories', () => {
-  assert.equal(newsSources.length, 10);
+  assert.equal(newsSources.length, 14);
   assert.equal(new Set(newsSources.map((feed) => feed.name)).size, newsSources.length);
   for (const feed of newsSources) {
     const url = new URL(feed.url);
@@ -73,5 +73,42 @@ test('Chinese and English RSS sources preserve their language on news items', as
     const feed = newsSources.find((item) => item.name === name)!;
     const articles = await parseNewsFeed(xml(entry('New anime announcement', `https://${feed.host}/article`)), feed, now);
     assert.equal(articles[0].language, feed.language);
+  }
+});
+
+test('PTT official Atom feed parsing preserves safe article URLs and Chinese source language', async () => {
+  const board = newsSources.find((feed) => feed.name === 'PTT C_Chat')!;
+  const atom = `<?xml version="1.0"?>
+    <feed xmlns="http://www.w3.org/2005/Atom">
+      <title>批踢踢實業坊 C_Chat</title><updated>2026-11-12T07:00:00Z</updated>
+      <entry>
+        <title>[閒聊] 本季動畫推薦</title>
+        <link href="https://www.ptt.cc/bbs/C_Chat/M.1794460000.A.123.html" />
+        <id>https://www.ptt.cc/bbs/C_Chat/M.1794460000.A.123.html</id>
+        <updated>2026-11-12T07:00:00Z</updated>
+      </entry>
+    </feed>`;
+  const posts = await parseNewsFeed(atom, board, now);
+  assert.equal(posts.length, 1);
+  assert.equal(posts[0].source, 'PTT C_Chat');
+  assert.equal(posts[0].language, 'zh');
+  assert.equal(posts[0].category, 'anime');
+  assert.equal(posts[0].url, 'https://www.ptt.cc/bbs/C_Chat/M.1794460000.A.123.html');
+});
+
+test('PTT source registry lists official public boards without gossip board', () => {
+  const expected = {
+    C_Chat: 'anime',
+    joke: 'memes',
+    StupidClown: 'topics',
+    Steam: 'games',
+  } as const;
+  for (const [board, category] of Object.entries(expected)) {
+    const feed = newsSources.find((entry) => entry.name === `PTT ${board}`);
+    assert.ok(feed, `Missing PTT board ${board}`);
+    assert.equal(feed.url, `https://www.ptt.cc/atom/${board}.xml`);
+    assert.equal(feed.host, 'ptt.cc');
+    assert.equal(feed.language, 'zh');
+    assert.equal(feed.category, category);
   }
 });

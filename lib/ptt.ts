@@ -78,16 +78,17 @@ export async function collectPttPosts(load = fetchPttBoard): Promise<PttResponse
 export function parsePttListing(html: string, config: PttBoard, now = Date.now()): PttItem[] {
   if (html.length > 2_000_000) throw Error("PTT listing too large");
   const results: PttItem[] = [];
-  const rows = html.match(/<div class="r-ent">[\\s\\S]*?(?=<div class="r-ent">|<div class="btn-group btn-group-paging"|$)/g) ?? [];
+  const rows = html.match(/<div class="r-ent">[\s\S]*?(?=<div class="r-ent">|<div class="btn-group btn-group-paging"|$)/g) ?? [];
   for (const row of rows.slice(0, 30)) {
-    const anchor = row.match(/<div class="title">[\\s\\S]*?<a[^>]+href="([^"]+)"[^>]*>([\\s\\S]*?)<\\/a>/);
-    const badge = row.match(/<div class="nrec">[\\s\\S]*?<span[^>]*>([\\s\\S]*?)<\\/span>/);
+    const anchor = row.match(/<div class="title">[\s\S]*?<a[^>]+href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/);
+    const badge = row.match(/<div class="nrec">[\s\S]*?<span[^>]*>([\s\S]*?)<\/span>/);
     if (!anchor || !badge) continue;
     const title = anchor[2].replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'").trim();
     const value = badge[1].replace(/<[^>]+>/g, "").trim();
-    const heat = value === "爆" ? 100 : /^\\d{1,2}$/.test(value) ? Number(value) : null;
+    const heat = value === "爆" ? 100 : /^\d{1,2}$/.test(value) ? Number(value) : null;
     if (heat === null || heat < 1 || !title || excludedTitles.test(title)) continue;
-    const url = new URL(anchor[1], PTT_ORIGIN);
+    let url: URL;
+    try { url = new URL(anchor[1], PTT_ORIGIN); } catch { continue; }
     if (url.origin !== PTT_ORIGIN || !new RegExp("^/bbs/" + config.board + "/M\\.[0-9]+\\.A\\.[A-Za-z0-9]+\\.html$").test(url.pathname)) continue;
     results.push({ id: url.href, title, url: url.href, board: config.board, category: config.category, publishedAt: new Date(now).toISOString(), heat });
   }

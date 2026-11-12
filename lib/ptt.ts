@@ -9,12 +9,16 @@ export type PttBoard = { board: string; category: PttCategory; newsCategory: New
 
 export const pttBoards: PttBoard[] = [
   { board: "Lifeismoney", category: "life", newsCategory: "topics" },
+  { board: "WomenTalk", category: "life", newsCategory: "topics" },
+  { board: "MobileComm", category: "tech", newsCategory: "topics" },
+  { board: "PC_Shopping", category: "tech", newsCategory: "topics" },
   { board: "C_Chat", category: "anime", newsCategory: "anime" },
   { board: "Steam", category: "games", newsCategory: "games" },
   { board: "movie", category: "movies", newsCategory: "topics" },
 ];
 
 const PTT_ORIGIN = "https://www.ptt.cc";
+const excludedTitles = /緋聞|出軌|偷吃|婚變|戀情|離婚|八卦|色情|成人|NSFW|\\b(?:porn|hentai|NTR)\\b/i;
 const MAX_POST_AGE_MS = 72 * 60 * 60 * 1000;
 
 /** Official Atom feeds provide recent public posts, not push-based hot rankings. */
@@ -67,5 +71,47 @@ export async function collectPttPosts(load = fetchPttBoard): Promise<PttResponse
       console.warn("PTT Atom feed unavailable", pttBoards[index].board, result.reason instanceof Error ? result.reason.message : "unknown");
     }
   });
-  return { items: mixPttPosts(items), unavailableBoards };
+  return { items: mixPttPosts(items), unavailableBoards, mode: "latest" };
+}
+
+/** PTT public board listing: the nrec badge reflects net pushes, not view counts. */
+export function parsePttListing(html: string, config: PttBoard, now = Date.now()): PttItem[] {
+  if (html.length > 2_000_000) throw Error("PTT listing too large");
+  const results: PttItem[] = [];
+  const rows = html.match(/<div class="r-ent">[\\s\\S]*?(?=<div class="r-ent">|<div class="btn-group btn-group-paging"|$)/g) ?? [];
+  for (const row of rows.slice(0, 30)) {
+    const anchor = row.match(/<div class="title">[\\s\\S]*?<a[^>]+href="([^"]+)"[^>]*>([\\s\\S]*?)<\\/a>/);
+    const badge = row.match(/<div class="nrec">[\\s\\S]*?<span[^>]*>([\\s\\S]*?)<\\/span>/);
+    if (!anchor || !badge) continue;
+    const title = anchor[2].replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'").trim();
+    const value = badge[1].replace(/<[^>]+>/g, "").trim();
+    const heat = value === "爆" ? 100 : /^\\d{1,2}$/.test(value) ? Number(value) : null;
+    if (heat === null || heat < 1 || !title || excludedTitles.test(title)) continue;
+    const url = new URL(anchor[1], PTT_ORIGIN);
+    if (url.origin !== PTT_ORIGIN || !new RegExp("^/bbs/" + config.board + "/M\\.[0-9]+\\.A\\.[A-Za-z0-9]+\\.html$").test(url.pathname)) continue;
+    results.push({ id: url.href, title, url: url.href, board: config.board, category: config.category, publishedAt: new Date(now).toISOString(), heat });
+  }
+  return results;
+}
+
+export async function fetchPttHotBoard(config: PttBoard): Promise<PttItem[]> {
+  const response = await fetch(PTT_ORIGIN + "/bbs/" + config.board + "/index.html", {
+    signal: AbortSignal.timeout(8_000), cache: "no-store",
+    headers: { Accept: "text/html", "User-Agent": "Feifei/1.0 PTT Reader" },
+  });
+  if (!response.ok) throw Error("PTT listing HTTP " + response.status);
+  const html = await response.text();
+  return parsePttListing(html, config);
+}
+
+export async function collectPttHot(load = fetchPttHotBoard): Promise<PttResponse> {
+  const results = await Promise.allSettled(pttBoards.map(load));
+  const items: PttItem[] = [];
+  const unavailableBoards: string[] = [];
+  results.forEach((result, index) => {
+    if (result.status === "fulfilled") items.push(...result.value);
+    else unavailableBoards.push(pttBoards[index].board);
+  });
+  const unique = [...new Map(items.map((item) => [item.url, item])).values()];
+  return { items: unique.sort((a, b) => (b.heat ?? 0) - (a.heat ?? 0)).slice(0, 90), unavailableBoards, mode: "hot" };
 }

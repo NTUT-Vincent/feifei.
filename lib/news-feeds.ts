@@ -3,6 +3,10 @@ import { mixNews, type NewsCategory, type NewsItem, type NewsLanguage, type News
 
 export type NewsSource = { name: string; url: string; host: string; category: NewsCategory; language: NewsLanguage };
 export const newsSources: NewsSource[] = [
+  { name: "PTT C_Chat", url: "https://www.ptt.cc/atom/C_Chat.xml", host: "ptt.cc", category: "anime", language: "zh" },
+  { name: "PTT joke", url: "https://www.ptt.cc/atom/joke.xml", host: "ptt.cc", category: "memes", language: "zh" },
+  { name: "PTT StupidClown", url: "https://www.ptt.cc/atom/StupidClown.xml", host: "ptt.cc", category: "topics", language: "zh" },
+  { name: "PTT Steam", url: "https://www.ptt.cc/atom/Steam.xml", host: "ptt.cc", category: "games", language: "zh" },
   { name: "巴哈姆特 GNN", url: "https://gnn.gamer.com.tw/rss.xml", host: "gnn.gamer.com.tw", category: "games", language: "zh" },
   { name: "NME Music", url: "https://www.nme.com/news/music/feed", host: "nme.com", category: "music", language: "en" },
   { name: "Kotaku", url: "https://kotaku.com/rss", host: "kotaku.com", category: "games", language: "en" },

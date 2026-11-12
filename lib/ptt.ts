@@ -1,25 +1,10 @@
 import { fetchNewsSource, type NewsSource } from "./news-feeds.ts";
 import type { NewsCategory } from "./news.ts";
 
-export const pttCategories = {
-  all: "全部",
-  life: "生活",
-  anime: "動漫",
-  games: "遊戲",
-  tech: "科技",
-  movies: "電影",
-} as const;
+import { pttCategories, type PttCategory, type PttItem, type PttResponse } from "./ptt-shared.ts";
+export { pttCategories } from "./ptt-shared.ts";
+export type { PttCategory, PttItem, PttResponse } from "./ptt-shared.ts";
 
-export type PttCategory = Exclude<keyof typeof pttCategories, "all">;
-export type PttItem = {
-  id: string;
-  title: string;
-  url: string;
-  board: string;
-  category: PttCategory;
-  publishedAt: string;
-};
-export type PttResponse = { items: PttItem[]; unavailableBoards: string[] };
 export type PttBoard = { board: string; category: PttCategory; newsCategory: NewsCategory };
 
 export const pttBoards: PttBoard[] = [

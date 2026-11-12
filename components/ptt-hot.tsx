@@ -2,7 +2,7 @@
 
 import { ArrowUpRight, RefreshCw } from "lucide-react";
 import { useEffect, useState } from "react";
-import { pttCategories, type PttResponse } from "../lib/ptt";
+import { pttCategories, type PttResponse } from "../lib/ptt-shared";
 
 const dateFormat = new Intl.DateTimeFormat("zh-TW", { month: "numeric", day: "numeric", timeZone: "Asia/Taipei" });
 

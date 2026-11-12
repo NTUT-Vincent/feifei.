@@ -1,12 +1,15 @@
 export const newsCategories = {
   all: "全部", anime: "動漫", music: "音樂", memes: "迷因", games: "遊戲", topics: "話題",
 } as const;
+export type NewsLanguage = "zh" | "en";
+export const newsLanguages = { all: "全部語言", zh: "中文", en: "English" } as const;
 export type NewsCategory = Exclude<keyof typeof newsCategories, "all">;
 export type NewsItem = {
   id: string;
   title: string;
   url: string;
   source: string;
+  language: NewsLanguage;
   category: NewsCategory;
   publishedAt: string;
 };

@@ -1,13 +1,13 @@
 "use client";
 
-import { ArrowUpRight, Flame, RefreshCw } from "lucide-react";
+import { ArrowUpRight, RefreshCw } from "lucide-react";
 import { useEffect, useState } from "react";
-import { pttCategories, type PttHotResponse } from "../lib/ptt";
+import { pttCategories, type PttResponse } from "../lib/ptt";
 
 const dateFormat = new Intl.DateTimeFormat("zh-TW", { month: "numeric", day: "numeric", timeZone: "Asia/Taipei" });
 
 export function PttHot() {
-  const [data, setData] = useState<PttHotResponse | null>(null);
+  const [data, setData] = useState<PttResponse | null>(null);
   const [category, setCategory] = useState<keyof typeof pttCategories>("all");
   const [page, setPage] = useState(0);
   const [attempt, setAttempt] = useState(0);
@@ -21,7 +21,7 @@ export function PttHot() {
     fetch("/api/ptt", { signal: controller.signal })
       .then(async (response) => {
         if (!response.ok) throw new Error("PTT is unavailable");
-        const result: PttHotResponse = await response.json();
+        const result: PttResponse = await response.json();
         if (active) setData(result);
       })
       .catch(() => { if (active) setError(true); })
@@ -35,7 +35,7 @@ export function PttHot() {
   return (
     <section className="news-wall ptt-hot-wall" aria-labelledby="ptt-heading" aria-busy={loading}>
       <header className="section-header">
-        <h2 id="ptt-heading">PTT 熱門</h2>
+        <h2 id="ptt-heading">PTT 討論</h2>
         <button type="button" className="plain-button" disabled={items.length <= 9 || loading} onClick={() => setPage((current) => (current + 1) % Math.ceil(items.length / 9))}>
           <RefreshCw size={15} />換一批
         </button>
@@ -59,18 +59,18 @@ export function PttHot() {
               <a className="news-card ptt-hot-card" href={item.url} target="_blank" rel="noopener noreferrer">
                 <div className="news-card-top">
                   <span className="news-category">{item.board}</span>
-                  <span className="ptt-hot-score"><Flame size={14} aria-hidden="true" />{item.pushScore >= 100 ? "爆" : item.pushScore}</span>
+                  <ArrowUpRight size={16} aria-hidden="true" />
                 </div>
                 <h3>{item.title}</h3>
                 <div className="news-meta">
                   <span>PTT</span>
                   <time dateTime={item.publishedAt}>{dateFormat.format(new Date(item.publishedAt))}</time>
-                  <ArrowUpRight size={15} aria-hidden="true" />
+
                 </div>
               </a>
             </li>
           ))}
-        </ul> : <p className="news-state" role="status">這個分類最近沒有熱門文章</p>}
+        </ul> : <p className="news-state" role="status">這個分類最近沒有新討論</p>}
       </>}
     </section>
   );

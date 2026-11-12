@@ -54,7 +54,7 @@ export async function fetchNewsSource(source: NewsSource): Promise<NewsItem[]> {
     headers: { Accept: "application/rss+xml, application/xml, text/xml", "User-Agent": "Feifei/1.0 RSS Reader" },
     cache: "no-store",
   });
-  if (!response.ok || !response.body) throw new Error("Feed unavailable");
+  if (!response.ok || !response.body) throw new Error("Feed unavailable: HTTP " + response.status);
   const reader = response.body.getReader();
   const chunks: Uint8Array[] = [];
   let size = 0;

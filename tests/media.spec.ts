@@ -42,3 +42,20 @@ test('search, queue, next and persistence stay inside a card', async ({ page }) 
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
   }
 });
+
+test('YouTube and Twitch expand to at least two columns without losing saved width', async ({ page }) => {
+  await page.route('https://www.youtube.com/iframe_api', (route) => route.fulfill({ contentType: 'text/javascript', body: sdk }));
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  const youtube = page.locator('.widget-youtube');
+  const twitch = page.locator('.widget-twitch');
+  await expect(youtube).toHaveCSS('grid-column-start', 'span 1');
+  await youtube.getByRole('button', { name: '播放 lofi hip hop mix' }).click();
+  await expect(youtube).toHaveCSS('grid-column-start', 'span 2');
+  await youtube.getByRole('button', { name: '收起 lofi hip hop mix' }).click();
+  await expect(youtube).toHaveCSS('grid-column-start', 'span 1');
+  await twitch.getByRole('button', { name: '播放 Twitch 精選剪輯' }).click();
+  await expect(twitch).toHaveCSS('grid-column-start', 'span 2');
+  await page.setViewportSize({ width: 390, height: 844 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+});

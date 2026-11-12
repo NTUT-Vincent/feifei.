@@ -128,7 +128,10 @@ export async function collectPttHot(load = fetchPttBoard): Promise<PttHotRespons
   const unavailableBoards: string[] = [];
   results.forEach((result, index) => {
     if (result.status === "fulfilled") items.push(...result.value);
-    else unavailableBoards.push(pttBoards[index].board);
+    else {
+      unavailableBoards.push(pttBoards[index].board);
+      console.warn("PTT board unavailable", pttBoards[index].board, result.reason instanceof Error ? result.reason.message : "unknown");
+    }
   });
   return { items: rankPttHot(items), unavailableBoards };
 }

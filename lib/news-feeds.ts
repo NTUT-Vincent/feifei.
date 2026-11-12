@@ -5,7 +5,6 @@ export type NewsSource = { name: string; url: string; host: string; category: Ne
 export const newsSources: NewsSource[] = [
   { name: "巴哈姆特 GNN", url: "https://gnn.gamer.com.tw/rss.xml", host: "gnn.gamer.com.tw", category: "games" },
   { name: "NME Music", url: "https://www.nme.com/news/music/feed", host: "nme.com", category: "music" },
-  { name: "Siliconera", url: "https://www.siliconera.com/feed/", host: "siliconera.com", category: "games" },
   { name: "4Gamers", url: "https://www.4gamers.com.tw/rss/latest-news", host: "4gamers.com.tw", category: "games" },
   { name: "Anime News Network", url: "https://www.animenewsnetwork.com/news/rss.xml?ann-edition=us", host: "animenewsnetwork.com", category: "anime" },
   { name: "吹音樂", url: "https://blow.streetvoice.com/feed/", host: "blow.streetvoice.com", category: "music" },
@@ -33,7 +32,7 @@ export async function parseNewsFeed(xml: string, source: NewsSource, now = Date.
     for (const key of [...url.searchParams.keys()]) if (/^utm_|^(fbclid|gclid)$/i.test(key)) url.searchParams.delete(key);
     let category = source.category;
     if (source.name === "Anime News Network" && /\b(?:game|games|gaming|playstation|nintendo|steam|xbox)\b/i.test(title)) category = "games";
-    if (source.name === "4Gamers" || source.name === "巴哈姆特 GNN" || source.name === "Siliconera") {
+    if (source.name === "4Gamers" || source.name === "巴哈姆特 GNN") {
       if (/動畫|漫畫|新番|聲優|劇場版|動漫|\\b(?:anime|manga)\\b/i.test(title)) category = "anime";
       else if (/樂團|演唱會|音樂祭|新專輯/.test(title)) category = "music";
       else if (/迷因|爆紅|網路梗/.test(title)) category = "topics";

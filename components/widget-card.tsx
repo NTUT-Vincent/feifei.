@@ -47,7 +47,7 @@ export function WidgetCard({
   return (
     <article
       className={`widget widget-${type}`}
-      style={{ "--span": expanded && type === "twitch" ? Math.max(2, width) : width } as CSSProperties}
+      style={{ "--span": expanded && (type === "twitch" || type === "youtube") ? Math.max(2, width) : width } as CSSProperties}
       aria-label={title}
       data-dragging={dragging || undefined}
       data-drop-target={dropTarget || undefined}

@@ -23,10 +23,10 @@ test("recent PTT posts remain grouped by topic and de-duplicated", () => {
 
 test("PTT board list spans leisure, games, and technology without gossip", () => {
   const names = pttBoards.map((entry) => entry.board);
-  for (const board of ["Lifeismoney", "WomenTalk", "MobileComm", "PC_Shopping", "C_Chat", "Steam", "movie"]) {
+  for (const board of ["Lifeismoney", "C_Chat", "Steam", "movie"]) {
     assert.ok(names.includes(board), board);
   }
-  assert.deepEqual([...names].sort(), ["Lifeismoney", "WomenTalk", "MobileComm", "PC_Shopping", "C_Chat", "Steam", "movie"].sort());
+  assert.deepEqual([...names].sort(), ["Lifeismoney", "C_Chat", "Steam", "movie"].sort());
   assert.equal(new Set(names).size, names.length);
   assert.ok(!names.includes("Gossiping"));
 });

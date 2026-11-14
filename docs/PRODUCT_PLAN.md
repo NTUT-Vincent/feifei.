@@ -79,3 +79,7 @@
 - 搜尋在同分頁或新分頁的使用者預設偏好。
 - 是否要在 MVP 支援手機編輯佈局。
 - 商標、域名與第三方 API 使用條款。
+
+## Connected accounts implementation — 2026-11-14
+
+Implemented Drizzle/PostgreSQL guest sessions, encrypted account storage, one-time OAuth states, shared database rate limits, Google/Spotify PKCE, Twitch authorization-code flow, refresh rotation and disconnect. Added library pagination, YouTube channel uploads, Twitch live status, Spotify development-user gate, in-card selection, account settings and privacy/deletion page. Build-time migrations are additive and serialized. Automated checks include a disposable real PostgreSQL integration suite and browser regression tests. Live platform consent and playback require account-owner verification after production release; automated fixtures are not an equivalent acceptance check.

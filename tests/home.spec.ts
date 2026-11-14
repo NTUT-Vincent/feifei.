@@ -55,7 +55,7 @@ test("drags, resizes, removes and restores widgets", async ({ page }) => {
   await dialog.getByRole("button", { name: "YouTube" }).click();
   await page.getByRole("button", { name: "新增小工具" }).click();
   await dialog.getByRole("button", { name: "PTT" }).click();
-  await expect(page.getByRole("link", { name: "C_Chat" })).toHaveAttribute("href", "https://www.ptt.cc/bbs/C_Chat/index.html");
+  await expect(page.getByRole("link", { name: "C_Chat", exact: true })).toHaveAttribute("href", "https://www.ptt.cc/bbs/C_Chat/index.html");
   await page.getByRole("button", { name: "完成", exact: true }).click();
   await page.reload();
   await expect(widgets).toHaveCount(4);

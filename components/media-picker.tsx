@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { MediaLibrary } from './media-library';
 import { Play, Plus, Trash2 } from 'lucide-react';
 import type { Widget } from '../lib/settings';
 import { validMedia, type MediaItem } from '../lib/media';
@@ -37,6 +38,7 @@ export function MediaPicker({ widget, onChange, onPlay }: { widget: Widget; onCh
     finally { if (!request.signal.aborted) setBusy(false); }
   }
   return <div className="media-picker">
+    {widget.type !== 'ptt' && <MediaLibrary provider={widget.type} choose={choose} />}
     <form className="media-search" onSubmit={submit}>
       <input aria-label="搜尋或貼上網址" placeholder={widget.type === 'spotify' ? '貼上 Spotify 網址' : '搜尋或貼上網址'} value={query} maxLength={2048} onChange={(e) => setQuery(e.target.value)} />
       <button className="solid-button" disabled={busy || !query.trim()}>{busy ? '搜尋中' : '尋找'}</button>

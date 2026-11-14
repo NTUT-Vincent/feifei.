@@ -40,7 +40,7 @@ export async function parseNewsFeed(xml: string, source: NewsSource, now = Date.
     let category = source.category;
     if (source.name === "Anime News Network" && /\b(?:game|games|gaming|playstation|nintendo|steam|xbox)\b/i.test(title)) category = "games";
     if (source.name === "4Gamers" || source.name === "巴哈姆特 GNN") {
-      if (/動畫|漫畫|新番|聲優|劇場版|動漫|\\b(?:anime|manga)\\b/i.test(title)) category = "anime";
+      if (/動畫|漫畫|新番|聲優|劇場版|動漫|\b(?:anime|manga)\b/i.test(title)) category = "anime";
       else if (/樂團|演唱會|音樂祭|新專輯/.test(title)) category = "music";
       else if (/迷因|爆紅|網路梗/.test(title)) category = "topics";
     }

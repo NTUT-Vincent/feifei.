@@ -1,5 +1,6 @@
 "use client";
 
+import { ConnectedAccounts, ConnectionNotice } from "./connected-accounts";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -89,6 +90,7 @@ export function Home() {
       </header>
 
       <main className="shell">
+        <ConnectionNotice />
         <section className="hero" aria-labelledby="brand-heading">
           <div className="hero-content">
             <h1 id="brand-heading">feifei<span>.</span></h1>
@@ -217,6 +219,7 @@ export function Home() {
 function Preferences({ settings, onReset }: { settings: Settings; onReset: () => void }) {
   return (
     <div className="preferences">
+      <ConnectedAccounts />
       <fieldset>
         <legend>模式</legend>
         <div className="preference-options">

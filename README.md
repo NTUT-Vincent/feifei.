@@ -78,3 +78,41 @@ YouTube 使用官方 IFrame API，支援影片、原生 Playlist、網址起始�
 首頁「PTT 討論」提供「全部／生活／動漫／遊戲／科技／電影」分類。已通過 Vercel 實測的 Atom 看板是 Lifeismoney、C_Chat、Steam、movie，可瀏覽最近 72 小時公開文章（每批 9 則），按分類交錯排列，避免只看到動漫或電影。「科技」因 PC_Shopping、MobileComm、iOS 等官方 Feed 在 Vercel 無法穩定取得，暫時提供原站看板連結，不假裝有科技新聞。無須登入或 API Key。每個看板獨立快取 15 分鐘，部分來源失效不影響其他來源。
 
 **不是推文數熱門排行。** 曾嘗試讀取官方 `/bbs/{board}/index.html` 的推文標記，但 Vercel 伺服器實測收到 HTTP 403。因此目前誠實標示為「PTT 討論」，以新文章為主，沒有偽造熱門分數。未來需取得授權且可靠的熱門資料來源才能推出排名。公開看板與供稿狀態可能變動，不繞過看板存取限制。
+
+## Connected media accounts
+
+Optional YouTube, Twitch and Spotify connections live in **設定 → 連結帳號** and each card's **換內容** panel. Anonymous search, pasted URLs, queues, shuffle and repeat remain available. YouTube subscriptions open the channel's uploads; playlists open individual videos. Twitch offers live and followed channels, with live channels first within each followed-page result. Spotify lists playlists for platform-approved development users; it uses the existing embed, not Web Playback SDK.
+
+Server configuration (never use `NEXT_PUBLIC_` for credentials):
+
+| Variable | Value |
+| --- | --- |
+| `DATABASE_URL` | PostgreSQL pooled connection |
+| `DATABASE_URL_UNPOOLED` | Optional direct migration connection |
+| `APP_BASE_URL` | Canonical origin, e.g. `https://feifei-ashy.vercel.app` |
+| `SESSION_SECRET` | Random secret, at least 32 characters |
+| `TOKEN_ENCRYPTION_KEY` | 32 random bytes encoded as 64 hex characters or base64 |
+| `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` | YouTube OAuth application |
+| `TWITCH_CLIENT_ID`, `TWITCH_CLIENT_SECRET` | Twitch application (existing search credentials reused) |
+| `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET` | Spotify application |
+| `SPOTIFY_OAUTH_ENABLED` | `true` only for platform-approved testers; omitted means disabled |
+
+Generate each server secret independently with `node -e "console.log(require('node:crypto').randomBytes(32).toString('hex'))"`. Never rotate the encryption key without migrating existing encrypted tokens. Callback paths: `/api/connections/youtube/callback`, `/api/connections/twitch/callback`, `/api/connections/spotify/callback`. Register the exact canonical production URLs. Preview deployments deliberately cannot begin OAuth with production callbacks; use a dedicated origin and database for OAuth preview testing.
+
+`npm run build` applies versioned Drizzle migrations before building when a database is configured. Production fails closed if it is missing. Migrations use an advisory lock and are additive. `npm run db:generate` generates schema changes; review generated SQL before deployment. `npm run db:migrate` applies them explicitly. Builds also delete expired sessions (cascading credentials), OAuth states and rate-limit rows. There is no scheduled cleanup yet.
+
+Sessions use a 30-day HttpOnly cookie and HMAC-hashed identifiers. AES-256-GCM binds each encrypted token to its session/provider. OAuth state is one-time, expires after 10 minutes and is bound to the same session/provider. Google and Spotify use PKCE; Twitch uses confidential authorization-code flow. Refresh rotation is serialized with a database row lock. Disconnect removes credentials and pending states, then attempts provider revocation where supported. Private library responses are `no-store`; only selected media URLs/titles enter existing local settings. See `/privacy` for deletion instructions.
+
+Validation:
+
+```sh
+npm run lint
+npm run typecheck
+npm test
+npm run build
+npm run test:integration
+npx playwright install --with-deps chromium
+npm run test:e2e
+```
+
+The integration suite starts disposable PostgreSQL and the production Next server with **test-only provider fixtures**. It covers migrations, all three callbacks, PKCE, replay/expiry/session isolation, encrypted tokens, concurrent refresh, upstream 401/403/429, disconnect and session expiry. It never uses production credentials. Browser tests cover library navigation, pagination, queue compatibility, anonymous fallbacks and viewport widths. Live OAuth consent, actual personal data and third-party playback rights must additionally be verified with the account owner; fixture success does not prove live platform authorization.

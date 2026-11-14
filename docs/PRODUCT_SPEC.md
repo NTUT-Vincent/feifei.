@@ -141,3 +141,7 @@ Next.js App Router
 4. 官方 Embed Widgets 與失敗處理。
 5. 手機／無障礙／效能測試。
 6. 小規模使用者驗證，決定 P1。
+
+## Optional connected accounts
+
+Users can connect YouTube, Twitch and approved Spotify development accounts without registering a Feifei account. Account identity belongs to a 30-day browser guest session. In-card media selection supports YouTube subscriptions/uploads and playlists/videos, Twitch following/live feeds, and Spotify playlists. Public search and URL playback remain independent. Media selections reuse existing playback and queues; no media-selection modal or explanatory subtitle is introduced. OAuth does not log the user into platform embeds. Cross-device sync, personalized home-feed scraping and Spotify Web Playback SDK are outside this release.

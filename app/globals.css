@@ -398,3 +398,15 @@ legend { padding: 0; margin-bottom: var(--space-2xs); font-size: var(--text-sm);
   .section-actions { gap: var(--space-3xs); }
   .section-actions .plain-button, .section-actions .solid-button { padding-inline: var(--space-3xs); }
 }
+
+.connected-accounts { display: grid; gap: 12px; min-width: 0; }
+.connection-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.connection-row > span { min-width: 0; overflow-wrap: anywhere; }
+.connection-row small { display: block; font-size: 12px; opacity: .7; }
+.connection-row button { flex-shrink: 0; }
+.connection-notice { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px; border: 1px solid currentColor; border-radius: 12px; margin-bottom: 16px; }
+.library-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.library-connect { margin-bottom: 10px; }
+.media-library { min-width: 0; margin-bottom: 12px; }
+.media-library .media-results { max-height: 320px; overflow-y: auto; }
+.media-library .queue-title { text-align: left; white-space: normal; overflow-wrap: anywhere; }

@@ -37,7 +37,7 @@ export const boards = [
 ];
 
 export const themes = [
-  { id: "peach", title: "奶油橘", swatch: "#edaf8b" },
-  { id: "mint", title: "薄荷綠", swatch: "#a2b78d" },
-  { id: "lavender", title: "芋泥紫", swatch: "#b6a0cb" },
+  { id: "peach", title: "奶油橘", swatch: "#e8a352" },
+  { id: "mint", title: "薄荷綠", swatch: "#43a065" },
+  { id: "lavender", title: "芋泥紫", swatch: "#a678c8" },
 ] as const;

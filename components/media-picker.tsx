@@ -50,7 +50,7 @@ export function MediaPicker({ widget, onChange, onPlay }: { widget: Widget; onCh
     {(widget.queue?.length ?? 0) > 0 && <div className="queue-header">待播清單 <span>{widget.queue!.length}/30</span></div>}
     <ul className="media-results">{widget.queue?.map((item, index) => <li key={`${item.url}-${index}`}>
       <button className="queue-title" aria-current={widget.url === item.url ? 'true' : undefined} onClick={() => choose(item, false)}>{index + 1}. {item.title}</button>
-      <button className="icon-button" aria-label={`移除待播 ${item.title}`} onClick={() => onChange({ queue: widget.queue!.filter((_, i) => i !== index) })}><Trash2 size={15} /></button>
+      <button className="icon-button" aria-label={`移除待播 ${item.title}`} onClick={() => onChange({ queue: widget.queue!.filter((_, i) => i !== index) })}><Trash2 size={16} /></button>
     </li>)}</ul>
   </div>;
 }

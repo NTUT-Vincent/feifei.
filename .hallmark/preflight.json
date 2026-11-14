@@ -1,0 +1,34 @@
+{
+  "target": "feifei (C:\\Users\\user\\Desktop\\ssuhsien\\feifei)",
+  "verb": "redesign",
+  "pages": [
+    { "route": "/", "file": "app/page.tsx -> components/home.tsx", "kind": "app-screen", "stamped": false, "genre": "playful (inferred: entertainment-first zh-Hant consumer homepage, unstamped)" }
+  ],
+  "framework": "Next.js 16.4.6 App Router, React 19, TypeScript, no Tailwind, hand-rolled CSS in app/globals.css",
+  "fonts": {
+    "display": "Fraunces Variable (@fontsource-variable/fraunces, app/layout.tsx:2; used at app/globals.css:80,115)",
+    "body": "system-ui, PingFang TC, Microsoft JhengHei (app/globals.css:3)"
+  },
+  "palette": "three hand-rolled themes on .site[data-theme] with dark modes: peach (#faf6ed paper, #aa4727 accent), mint, lavender (app/globals.css:16-71); 68 colour literals outside a token block",
+  "imagery": "/sleepy-cat.webp hero illustration (components/home.tsx:102); CSS-drawn decorative widget covers (app/globals.css:208-268)",
+  "brand": "none declared (no design.md, no .hallmark/brand-spec.md, no logo asset beyond /feifei-icon-512.png); the wordmark feifei. + flower glyph + Fraunces read as a de-facto look, not a locked brand",
+  "wiring": {
+    "links": 22, "fields": 4, "handlers": 58, "testHooks": 0, "scriptHooks": 0,
+    "record": ".hallmark/before.json",
+    "notes": "settings persisted in feifei.settings (lib/settings-store); routes /api/news, /api/embed, /api/media/search; playwright e2e + node --test"
+  },
+  "before": { "FAIL": 72, "REFLEX": 65, "WARN": 8, "file": ".hallmark/before.txt", "screenshots": ".hallmark/before/" },
+  "keyFindings": [
+    "48: 68 colour literals, no token block (app/globals.css:3,17...)",
+    "26a (rendered): nothing shows keyboard focus on the search input",
+    "39a x2: disabled carried by opacity alone (app/globals.css:108,220)",
+    "40 (rendered): search field edge under 3:1 against surroundings",
+    "3 (rendered, Reflex): widget grid = three equal icon-above-heading tiles",
+    "24b x63 (Reflex): spacing off the 4px scale",
+    "38iii (Reflex): accent-coloured word inside the h1 (the red dot)",
+    "40 x3 (warn): cover art text/ink contrast 2.90:1, 4.10:1"
+  ],
+  "preserved": "all content and copy (zh-Hant), every link/field/handler/id, three themes + light/dark preference system, settings store, API routes, sleepy-cat image, news sources",
+  "introduced": "a token block, states, a dealt theme (unless the palette is kept), recomposed sections at full depth",
+  "gitTree": "clean at start; .hallmark/ is the run's own output"
+}

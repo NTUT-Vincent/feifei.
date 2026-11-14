@@ -28,7 +28,7 @@ export function Dialog({ title, children, onClose }: {
       <div className="dialog-content">
         <header className="dialog-header">
           <h2 id={headingId}>{title}</h2>
-          <button type="button" className="icon-button" aria-label="關閉" onClick={onClose}><X size={19} /></button>
+          <button type="button" className="icon-button" aria-label="關閉" onClick={onClose}><X size={20} /></button>
         </header>
         {children}
       </div>

@@ -37,7 +37,7 @@ export function ShortcutForm({ shortcut, onSave }: { shortcut?: Shortcut; onSave
         <div className="icon-picker">
           {shortcutIcons.map((item) => (
             <button key={item} className={`icon-button shortcut-icon ${item}`} type="button" title={iconLabels[item]} aria-label={iconLabels[item]} aria-pressed={item === icon} onClick={() => setIcon(item)}>
-              <SiteIcon icon={item} size={17} />
+              <SiteIcon icon={item} size={16} />
             </button>
           ))}
         </div>

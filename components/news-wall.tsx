@@ -38,7 +38,7 @@ export function NewsWall() {
       <header className="section-header">
         <h2 id="news-heading">新鮮事</h2>
         <button type="button" className="plain-button" disabled={items.length <= 9 || loading} onClick={() => setPage((current) => (current + 1) % Math.ceil(items.length / 9))}>
-          <RefreshCw size={15} />換一批
+          <RefreshCw size={16} />換一批
         </button>
       </header>
       <div className="news-filters" role="group" aria-label="新聞分類">

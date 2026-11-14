@@ -82,8 +82,8 @@ export function Home() {
           <div className="topbar-actions">
             <button type="button" className="icon-button mode-toggle" title={settings.mode === "light" ? "切換深色" : "切換淺色"} aria-label={settings.mode === "light" ? "切換深色" : "切換淺色"} onClick={() =>
               updateSettings((current) => ({ ...current, mode: current.mode === "light" ? "dark" : "light" }))
-            }>{settings.mode === "light" ? <Moon size={18} /> : <Sun size={19} />}</button>
-            <button type="button" className="outline-button" onClick={() => setOverlay({ type: "preferences" })}><Settings2 size={17} />設定</button>
+            }>{settings.mode === "light" ? <Moon size={16} /> : <Sun size={20} />}</button>
+            <button type="button" className="outline-button" onClick={() => setOverlay({ type: "preferences" })}><Settings2 size={16} />設定</button>
           </div>
         </div>
       </header>
@@ -95,7 +95,7 @@ export function Home() {
             <form className="search" role="search" onSubmit={search}>
               <Search size={20} aria-hidden />
               <input name="q" type="search" aria-label="Google 搜尋" placeholder="Google 搜尋" maxLength={500} autoComplete="off" />
-              <button type="submit" className="search-submit" aria-label="搜尋"><ArrowRight size={21} /></button>
+              <button type="submit" className="search-submit" aria-label="搜尋"><ArrowRight size={20} /></button>
             </form>
           </div>
           <div className="hero-art">
@@ -106,21 +106,21 @@ export function Home() {
         <section className="shortcuts" aria-labelledby="shortcuts-heading">
           <header className="section-header">
             <h2 id="shortcuts-heading">捷徑</h2>
-            <button type="button" className="plain-button" disabled={settings.shortcuts.length >= MAX_SHORTCUTS} onClick={() => setOverlay({ type: "shortcut" })}><Plus size={17} />新增</button>
+            <button type="button" className="plain-button" disabled={settings.shortcuts.length >= MAX_SHORTCUTS} onClick={() => setOverlay({ type: "shortcut" })}><Plus size={16} />新增</button>
           </header>
           <ul className="shortcut-list">
             {settings.shortcuts.map((item, index) => (
               <li key={item.id} className="shortcut-item">
                 <a className="shortcut" href={item.url} target="_blank" rel="noopener noreferrer" title={item.title}>
-                  <span className={`shortcut-icon ${item.icon}`}><SiteIcon icon={item.icon} size={19} /></span>
+                  <span className={`shortcut-icon ${item.icon}`}><SiteIcon icon={item.icon} size={20} /></span>
                   <span className="shortcut-title">{item.title}</span>
-                  <ArrowUpRight size={14} className="shortcut-arrow" />
+                  <ArrowUpRight size={16} className="shortcut-arrow" />
                 </a>
                 {editing && <div className="shortcut-edit-actions">
-                  <button type="button" className="icon-button" aria-label={`${item.title} 捷徑往前移`} disabled={index === 0} onClick={() => updateSettings((current) => ({ ...current, shortcuts: moveItem(current.shortcuts, index, index - 1) }))}><ArrowLeft size={15} /></button>
-                  <button type="button" className="icon-button" aria-label={`${item.title} 捷徑往後移`} disabled={index === settings.shortcuts.length - 1} onClick={() => updateSettings((current) => ({ ...current, shortcuts: moveItem(current.shortcuts, index, index + 1) }))}><ArrowRight size={15} /></button>
-                  <button type="button" className="icon-button" aria-label={`編輯捷徑 ${item.title}`} onClick={() => setOverlay({ type: "shortcut", item })}><Pencil size={14} /></button>
-                  <button type="button" className="icon-button delete-button" aria-label={`刪除捷徑 ${item.title}`} onClick={() => updateSettings((current) => ({ ...current, shortcuts: current.shortcuts.filter(({ id }) => id !== item.id) }))}><Trash2 size={15} /></button>
+                  <button type="button" className="icon-button" aria-label={`${item.title} 捷徑往前移`} disabled={index === 0} onClick={() => updateSettings((current) => ({ ...current, shortcuts: moveItem(current.shortcuts, index, index - 1) }))}><ArrowLeft size={16} /></button>
+                  <button type="button" className="icon-button" aria-label={`${item.title} 捷徑往後移`} disabled={index === settings.shortcuts.length - 1} onClick={() => updateSettings((current) => ({ ...current, shortcuts: moveItem(current.shortcuts, index, index + 1) }))}><ArrowRight size={16} /></button>
+                  <button type="button" className="icon-button" aria-label={`編輯捷徑 ${item.title}`} onClick={() => setOverlay({ type: "shortcut", item })}><Pencil size={16} /></button>
+                  <button type="button" className="icon-button delete-button" aria-label={`刪除捷徑 ${item.title}`} onClick={() => updateSettings((current) => ({ ...current, shortcuts: current.shortcuts.filter(({ id }) => id !== item.id) }))}><Trash2 size={16} /></button>
                 </div>}
               </li>
             ))}
@@ -131,9 +131,9 @@ export function Home() {
           <header className="section-header">
             <h2 id="widgets-heading">小工具</h2>
             <div className="section-actions">
-              {(editing || settings.widgets.length === 0) && <button type="button" className="plain-button" disabled={settings.widgets.length >= MAX_WIDGETS} onClick={() => setOverlay({ type: "add-widget" })}><Plus size={17} />新增小工具</button>}
+              {(editing || settings.widgets.length === 0) && <button type="button" className="plain-button" disabled={settings.widgets.length >= MAX_WIDGETS} onClick={() => setOverlay({ type: "add-widget" })}><Plus size={16} />新增小工具</button>}
               <button type="button" className={editing ? "solid-button" : "outline-button"} aria-pressed={editing} onClick={() => { setEditing(!editing); finishDrag(); }}>
-                {!editing && <Pencil size={15} />}{editing ? "完成" : "編輯版面"}
+                {!editing && <Pencil size={16} />}{editing ? "完成" : "編輯版面"}
               </button>
             </div>
           </header>
@@ -221,7 +221,7 @@ function Preferences({ settings, onReset }: { settings: Settings; onReset: () =>
         <legend>模式</legend>
         <div className="preference-options">
           {(["light", "dark"] as const).map((mode) => <button type="button" className="outline-button" aria-pressed={mode === settings.mode} key={mode} onClick={() => updateSettings((current) => ({ ...current, mode }))}>
-            {mode === "light" ? <Sun size={17} /> : <Moon size={17} />}{mode === "light" ? "淺色" : "深色"}
+            {mode === "light" ? <Sun size={16} /> : <Moon size={16} />}{mode === "light" ? "淺色" : "深色"}
           </button>)}
         </div>
       </fieldset>

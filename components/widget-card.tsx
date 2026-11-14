@@ -61,20 +61,20 @@ export function WidgetCard({
           <button type="button" className="icon-button collapse-player" aria-label={`收起 ${title}`} onClick={() => {
             restoreFocus.current = true;
             setExpanded(false);
-          }}><X size={17} /></button>
+          }}><X size={16} /></button>
         )}
         {editing ? (
           <button type="button" className="icon-button drag-handle" draggable aria-label={`拖曳 ${title}`} title="拖曳排序" onDragStart={onDragStart} onDragEnd={onDragEnd}>
-            <GripVertical size={18} />
+            <GripVertical size={16} />
           </button>
         ) : !expanded && (
-          <a className="icon-button" href={widget.url} target="_blank" rel="noopener noreferrer" aria-label={`在 ${service.name} 開啟 ${title}`}><ArrowUpRight size={18} /></a>
+          <a className="icon-button" href={widget.url} target="_blank" rel="noopener noreferrer" aria-label={`在 ${service.name} 開啟 ${title}`}><ArrowUpRight size={16} /></a>
         )}
       </header>
       {type === "ptt" ? (
         <ul className="board-list">
           {boards.map((board) => <li key={board.title}>
-            <a href={board.url} target="_blank" rel="noopener noreferrer">{board.title}<ArrowUpRight size={15} /></a>
+            <a href={board.url} target="_blank" rel="noopener noreferrer">{board.title}<ArrowUpRight size={16} /></a>
           </li>)}
         </ul>
       ) : expanded ? (
@@ -87,7 +87,7 @@ export function WidgetCard({
           }
         }} type="button" className={`media-cover cover-${type}`} disabled={editing} onClick={() => setExpanded(true)} aria-label={`播放 ${title}`}>
           <span className="cover-decoration" aria-hidden><i /><i /><i /></span>
-          <span className="cover-play" aria-hidden><Play size={17} fill="currentColor" /></span>
+          <span className="cover-play" aria-hidden><Play size={16} fill="currentColor" /></span>
         </button>
       )}
       <div className="widget-caption"><h3>{title}</h3>{type !== "ptt" && <button className="plain-button change-content" aria-expanded={choosing} onClick={() => setChoosing(!choosing)}>{choosing ? "收起設定" : "換內容"}</button>}</div>
@@ -95,7 +95,7 @@ export function WidgetCard({
       {editing && <div className="widget-edit-actions">
         <button type="button" className="icon-button" disabled={!canMoveLeft} aria-label={`${title} 往前移`} onClick={() => onMove(-1)}><ArrowLeft size={16} /></button>
         <button type="button" className="icon-button" disabled={!canMoveRight} aria-label={`${title} 往後移`} onClick={() => onMove(1)}><ArrowRight size={16} /></button>
-        <button type="button" className="icon-button" aria-label={`編輯 ${title}`} onClick={onEdit}><Pencil size={15} /></button>
+        <button type="button" className="icon-button" aria-label={`編輯 ${title}`} onClick={onEdit}><Pencil size={16} /></button>
         <button type="button" className="icon-button delete-button" aria-label={`移除 ${title}`} onClick={onRemove}><Trash2 size={16} /></button>
       </div>}
     </article>

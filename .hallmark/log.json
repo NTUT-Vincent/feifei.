@@ -1,0 +1,27 @@
+[
+ {
+  "mode": "redesign",
+  "depth": "full",
+  "scope": "app",
+  "shape": "app screen",
+  "theme": "hum",
+  "axes": "light/rounded-sans/chromatic-yellow",
+  "hero": "none (app screen): wordmark + search + die-cut cat sticker",
+  "nav": "kept, the project's top bar",
+  "footer": "none (app screen)",
+  "imagery": "the user's sleepy-cat illustration as a die-cut sticker; CSS cut-paper covers retuned to tokens",
+  "photos": [],
+  "entry": "feifei start page rebuilt in Hum: grained cream paper, torn kraft shortcut band, card-stock controls that press, a token block for 3 themes x light/dark, states everywhere",
+  "fingerprint": "app-screen/search-lead/kraft-band/card-stock-board/clippings-well",
+  "sections": "topbar, opening (wordmark+search+sticker), shortcuts kraft band, widget board, news well",
+  "signature": "the card-stock widget pressed into a live player",
+  "waived": [
+   "3",
+   "12",
+   "38iii",
+   "39b"
+  ],
+  "prompt": "Personal entertainment start page in Traditional Chinese: Google search, site shortcuts, YouTube Twitch Spotify PTT widgets, anime music meme game news wall; relax, not work",
+  "date": "2026-11-14"
+ }
+]

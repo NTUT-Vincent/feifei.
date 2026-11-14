@@ -1,0 +1,91 @@
+:root {
+  color-scheme: light;
+  --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px; --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px; --space-3xl: 96px; --space-4xl: 144px;
+  --text-xs: 0.75rem; --text-sm: 0.875rem; --text-md: 1rem; --text-lg: 1.2rem; --text-xl: 1.44rem; --text-2xl: 1.728rem; --text-3xl: 2.074rem;
+  --text-display-s: 1.44rem; --text-display: 1.728rem; --text-section: 1.2rem; --text-title: 1rem; --text-lead: 1rem;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); --ease-in: cubic-bezier(0.7, 0, 0.84, 0); --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms; --dur-short: 220ms; --dur-long: 420ms;
+  --color-error: oklch(52% 0.19 27); --color-success: oklch(50% 0.12 150);
+  --container: 1440px; --gutter: 64px; --gap-columns: 32px; --section-gap-s: 120px; --section-gap: 144px; --section-gap-l: 176px;
+  --z-base: 1; --z-raised: 10; --z-dropdown: 100; --z-sticky: 200; --z-sticky-nav: 300; --z-modal: 400; --z-toast: 500; --z-tooltip: 600;
+  --color-paper: oklch(97% 0.012 95); --color-paper-2: oklch(94.5% 0.018 95); --color-paper-3: oklch(91% 0.022 95);
+  --color-ink: oklch(20% 0.014 255); --color-ink-2: oklch(29% 0.014 255); --color-muted: oklch(47% 0.014 255);
+  --color-rule: oklch(87% 0.016 95);
+  --color-accent: oklch(87% 0.175 96); --color-accent-deep: oklch(72% 0.16 92); --color-accent-ink: oklch(20% 0.014 255);
+  --color-accent-2: oklch(50% 0.17 250); --color-accent-3: oklch(70% 0.2 22);
+  --color-mint: oklch(82% 0.15 152); --color-mint-deep: oklch(48% 0.12 155); --color-focus: oklch(50% 0.17 250);
+  --color-card: oklch(98.8% 0.007 95); --color-edge: oklch(83% 0.04 88); --color-fringe: oklch(99.2% 0.006 95);
+  --color-kraft: oklch(63% 0.085 62); --color-sand: oklch(77% 0.1 76); --color-sugar: oklch(89% 0.035 236);
+  --color-hill-1: oklch(94.5% 0.03 118); --color-hill-2: oklch(91.5% 0.045 135); --color-leaf: oklch(64% 0.15 150);
+  --font-display: "Chillax", ui-rounded, ui-sans-serif, sans-serif; --font-body: var(--font-display);
+  --font-outlier: "Geist Mono", ui-monospace, monospace;
+  --radius-card: 24px; --radius-stock: 16px; --radius-input: 14px; --radius-pill: 999px; --rule-hair: 1px;
+  --shadow-card: 0 1px 2px oklch(20% 0.014 255 / 0.06), 0 12px 28px -14px oklch(20% 0.014 255 / 0.22);
+  --shadow-paper: drop-shadow(0 0 0.6px oklch(20% 0.014 255 / 0.32)) drop-shadow(1.5px 2.5px 1.5px oklch(20% 0.014 255 / 0.1)) drop-shadow(6px 14px 16px oklch(20% 0.014 255 / 0.13));
+  --tracking-display: -0.03em; --display-weight: 600;
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); --ease-snap: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* feifei page tokens: Hum's paper tools and the page's own theme system. */
+:root {
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  --fibre: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.012 0.06' numOctaves='2' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='420' height='420' filter='url(%23f)'/%3E%3C/svg%3E");
+  --tear-band: polygon(0 14px, 4% 7px, 9% 13px, 15% 6px, 22% 11px, 30% 5px, 37% 10px, 45% 6px, 53% 13px, 61% 7px, 68% 12px, 76% 6px, 83% 11px, 90% 7px, 96% 12px, 100% 8px, 100% calc(100% - 9px), 95% calc(100% - 4px), 88% calc(100% - 11px), 80% calc(100% - 5px), 71% calc(100% - 10px), 62% calc(100% - 4px), 52% calc(100% - 10px), 43% calc(100% - 5px), 34% calc(100% - 11px), 25% calc(100% - 6px), 16% calc(100% - 10px), 8% calc(100% - 5px), 3% calc(100% - 9px), 0 calc(100% - 6px));
+  --text-wordmark: 2.75rem;
+  --radius-tile: 8px;
+  --edge: 4px;
+  --brand-youtube-bg: oklch(90% 0.06 25); --brand-youtube-ink: oklch(52% 0.16 28);
+  --brand-twitch-bg: oklch(90% 0.05 300); --brand-twitch-ink: oklch(48% 0.14 300);
+  --brand-spotify-bg: oklch(89% 0.07 140); --brand-spotify-ink: oklch(45% 0.12 145);
+  --brand-ptt-bg: oklch(91% 0.05 85); --brand-ptt-ink: oklch(48% 0.09 70);
+}
+
+/* The page's own themes: each a Hum paper. Peach keeps the scaffold's cream. */
+.site {
+  --art-filter: none;
+}
+.site[data-theme="mint"] {
+  --color-paper: oklch(96.5% 0.016 145); --color-paper-2: oklch(94% 0.022 145); --color-paper-3: oklch(90% 0.03 145);
+  --color-rule: oklch(86% 0.025 145);
+  --color-accent: oklch(62% 0.13 152); --color-accent-deep: oklch(52% 0.12 150); --color-accent-ink: oklch(20% 0.014 255);
+  --color-card: oklch(98.5% 0.008 145); --color-edge: oklch(80% 0.05 150);
+  --art-filter: saturate(.88) hue-rotate(12deg);
+}
+.site[data-theme="lavender"] {
+  --color-paper: oklch(96.5% 0.016 310); --color-paper-2: oklch(94% 0.022 310); --color-paper-3: oklch(90% 0.03 310);
+  --color-rule: oklch(86% 0.025 310);
+  --color-accent: oklch(56% 0.14 305); --color-accent-deep: oklch(47% 0.13 305); --color-accent-ink: oklch(97% 0.008 310);
+  --color-card: oklch(98.4% 0.008 310); --color-edge: oklch(78% 0.05 310);
+  --art-filter: saturate(.82) hue-rotate(-14deg);
+}
+.site[data-mode="dark"] {
+  --color-paper: oklch(17% 0.012 80); --color-paper-2: oklch(21% 0.014 80); --color-paper-3: oklch(25% 0.016 80);
+  --color-ink: oklch(91% 0.014 85); --color-ink-2: oklch(82% 0.012 85); --color-muted: oklch(66% 0.01 80);
+  --color-rule: oklch(30% 0.02 80);
+  --color-accent: oklch(82% 0.13 82); --color-accent-deep: oklch(60% 0.11 75); --color-accent-ink: oklch(18% 0.012 80);
+  --color-accent-2: oklch(74% 0.12 250); --color-accent-3: oklch(72% 0.16 25);
+  --color-focus: oklch(78% 0.13 250);
+  --color-card: oklch(20% 0.012 85); --color-edge: oklch(34% 0.03 78); --color-fringe: oklch(24% 0.012 85);
+  --color-kraft: oklch(42% 0.07 62); --color-sand: oklch(45% 0.06 78); --color-sugar: oklch(30% 0.03 236);
+  --color-mint: oklch(58% 0.11 152); --color-mint-deep: oklch(75% 0.1 152);
+  --color-error: oklch(70% 0.16 25); --color-success: oklch(72% 0.11 150);
+  --brand-youtube-bg: oklch(28% 0.04 25); --brand-youtube-ink: oklch(78% 0.1 28);
+  --brand-twitch-bg: oklch(28% 0.035 300); --brand-twitch-ink: oklch(76% 0.09 300);
+  --brand-spotify-bg: oklch(27% 0.05 145); --brand-spotify-ink: oklch(76% 0.1 145);
+  --brand-ptt-bg: oklch(28% 0.035 85); --brand-ptt-ink: oklch(78% 0.07 70);
+  --art-filter: brightness(.9);
+}
+.site[data-mode="dark"][data-theme="mint"] {
+  --color-paper: oklch(16% 0.014 150); --color-paper-2: oklch(20% 0.016 150); --color-paper-3: oklch(24% 0.018 150);
+  --color-ink: oklch(90% 0.012 145); --color-ink-2: oklch(81% 0.011 145); --color-muted: oklch(65% 0.01 148);
+  --color-rule: oklch(29% 0.022 150);
+  --color-accent: oklch(72% 0.12 152); --color-accent-deep: oklch(56% 0.11 150); --color-accent-ink: oklch(16% 0.014 150);
+  --color-card: oklch(19.5% 0.014 150); --color-edge: oklch(32% 0.035 150); --color-fringe: oklch(23% 0.014 150);
+}
+.site[data-mode="dark"][data-theme="lavender"] {
+  --color-paper: oklch(16% 0.016 310); --color-paper-2: oklch(20% 0.018 310); --color-paper-3: oklch(24% 0.02 310);
+  --color-ink: oklch(90% 0.012 310); --color-ink-2: oklch(81% 0.011 310); --color-muted: oklch(65% 0.01 308);
+  --color-rule: oklch(29% 0.024 310);
+  --color-accent: oklch(72% 0.12 305); --color-accent-deep: oklch(58% 0.11 305); --color-accent-ink: oklch(16% 0.016 310);
+  --color-card: oklch(19.5% 0.016 310); --color-edge: oklch(33% 0.04 310); --color-fringe: oklch(23% 0.016 310);
+}

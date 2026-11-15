@@ -1,0 +1,16 @@
+[
+  {
+    "id": "cat-meeting",
+    "kind": "original",
+    "title": "貓咪的會議紀錄",
+    "setup": "貓主管開完兩小時會議，只留下一行結論。",
+    "punchline": "「這個紙箱，我們下次再議。今天先睡進去。」"
+  },
+  {
+    "id": "weekend-update",
+    "kind": "original",
+    "title": "週末更新中",
+    "setup": "我替週末安裝了效率外掛，結果整天都沒做事。",
+    "punchline": "系統提示：已成功關閉不必要的背景焦慮。"
+  }
+]

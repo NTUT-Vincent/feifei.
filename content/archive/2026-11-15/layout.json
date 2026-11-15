@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "date": "2026-11-15",
+  "editedAt": "2026-11-15T06:34:59+00:00",
+  "sections": [
+    {
+      "id": "mood",
+      "type": "mood",
+      "size": "full",
+      "contentId": "slow-sunday"
+    },
+    {
+      "id": "lead",
+      "type": "news",
+      "size": "large",
+      "contentId": "rezero"
+    },
+    {
+      "id": "joke-one",
+      "type": "joke",
+      "size": "small",
+      "contentId": "cat-meeting"
+    },
+    {
+      "id": "news-two",
+      "type": "news",
+      "size": "medium",
+      "contentId": "lovelive"
+    },
+    {
+      "id": "news-three",
+      "type": "news",
+      "size": "medium",
+      "contentId": "gundam"
+    },
+    {
+      "id": "story",
+      "type": "story",
+      "size": "large",
+      "contentId": "cloud-shop"
+    },
+    {
+      "id": "joke-two",
+      "type": "joke",
+      "size": "small",
+      "contentId": "weekend-update"
+    }
+  ]
+}

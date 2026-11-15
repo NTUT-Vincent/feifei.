@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 let token: { value: string; until: number } | undefined;
 let pending: Promise<string> | undefined;
+type SpotifyResult = { id?: string; name?: string; artists?: { name: string }[] };
 let spotifyTokenCache: { value: string; until: number } | undefined;
 let spotifyPending: Promise<string> | undefined;
 async function spotifyToken(): Promise<string> {
@@ -64,9 +65,9 @@ export async function GET(request: NextRequest) {
       if (!response.ok) throw new Error(`provider_${response.status}`);
       const data = await response.json();
       items = [
-        ...(data.tracks?.items ?? []).filter((item: any) => item?.id).map((item: any) => ({ url: `https://open.spotify.com/track/${item.id}`, title: String(item.name), detail: `歌曲 · ${(item.artists ?? []).map((a: any) => a.name).join(', ')}` })),
-        ...(data.albums?.items ?? []).filter((item: any) => item?.id).map((item: any) => ({ url: `https://open.spotify.com/album/${item.id}`, title: String(item.name), detail: `專輯 · ${(item.artists ?? []).map((a: any) => a.name).join(', ')}` })),
-        ...(data.playlists?.items ?? []).filter((item: any) => item?.id).map((item: any) => ({ url: `https://open.spotify.com/playlist/${item.id}`, title: String(item.name), detail: '播放清單' })),
+        ...(data.tracks?.items ?? []).filter((item: SpotifyResult) => item?.id).map((item: SpotifyResult) => ({ url: `https://open.spotify.com/track/${item.id}`, title: String(item.name), detail: `歌曲 · ${(item.artists ?? []).map((a: { name: string }) => a.name).join(', ')}` })),
+        ...(data.albums?.items ?? []).filter((item: SpotifyResult) => item?.id).map((item: SpotifyResult) => ({ url: `https://open.spotify.com/album/${item.id}`, title: String(item.name), detail: `專輯 · ${(item.artists ?? []).map((a: { name: string }) => a.name).join(', ')}` })),
+        ...(data.playlists?.items ?? []).filter((item: SpotifyResult) => item?.id).map((item: SpotifyResult) => ({ url: `https://open.spotify.com/playlist/${item.id}`, title: String(item.name), detail: '播放清單' })),
       ];
     } else {
       const search = async () => fetch(`https://api.twitch.tv/helix/search/channels?${new URLSearchParams({ query: q, first: '8' })}`, { headers: { 'Client-Id': process.env.TWITCH_CLIENT_ID!, Authorization: `Bearer ${await twitchToken()}` }, signal: AbortSignal.timeout(8000), cache: 'no-store' });

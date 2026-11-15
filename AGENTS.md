@@ -7,3 +7,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Daily edition
+
+Read `docs/DAILY_EDITOR_PLAN.md` before editing daily content. The schema is in `lib/daily/schema.ts`. Use `npm run archive:daily` before replacing an edition and `npm run validate:daily` before publishing. Daily editorial automation may only change the five content JSON files and dated archives; preserve media settings and application source. `npm run build` validates content before deployment.

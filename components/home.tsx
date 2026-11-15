@@ -6,7 +6,7 @@ import Link from "next/link";
 import {
   ArrowLeft, ArrowRight, ArrowUpRight, Moon, Pencil, Plus, Search, Settings2, Sun, Trash2,
 } from "lucide-react";
-import { useMemo, useState, useSyncExternalStore, type DragEvent, type FormEvent } from "react";
+import { useMemo, useState, useSyncExternalStore, type DragEvent, type FormEvent, type ReactNode } from "react";
 import { themes, widgetCatalog, widgetTypes } from "../lib/catalog";
 import {
   defaultSettings, defaultWidget, MAX_SHORTCUTS, MAX_WIDGETS, moveItem, readSettings,
@@ -25,7 +25,7 @@ type Overlay =
   | { type: "shortcut"; item?: Shortcut }
   | { type: "widget"; item: Widget };
 
-export function Home() {
+export function Home({ dailyEdition }: { dailyEdition?: ReactNode }) {
   const raw = useSyncExternalStore(subscribeSettings, readSavedSettings, serverSettings);
   const settings = useMemo(() => readSettings(raw), [raw]);
   const [activePlayer, setActivePlayer] = useState<string | null>(null);
@@ -172,6 +172,7 @@ export function Home() {
             ))}
           </div>
         </section>
+        {dailyEdition}
         <NewsWall />
       </main>
 

@@ -410,3 +410,25 @@ legend { padding: 0; margin-bottom: var(--space-2xs); font-size: var(--text-sm);
 .media-library { min-width: 0; margin-bottom: 12px; }
 .media-library .media-results { max-height: 320px; overflow-y: auto; }
 .media-library .queue-title { text-align: left; white-space: normal; overflow-wrap: anywhere; }
+
+/* Daily clippings share the existing paper, ink and theme tokens. */
+.daily-edition { margin-top: var(--space-2xl); }
+.daily-edition > header time { color: var(--color-muted); font-size: var(--text-sm); font-variant-numeric: tabular-nums; }
+.daily-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-md); align-items: start; }
+.daily-card { min-width: 0; padding: var(--space-lg); background: var(--grain), var(--fibre), var(--color-card); border-radius: var(--radius-card); box-shadow: var(--shadow-card); overflow-wrap: anywhere; }
+.daily-size-small { grid-column: span 4; }
+.daily-size-medium { grid-column: span 6; }
+.daily-size-large { grid-column: span 8; }
+.daily-size-full { grid-column: 1 / -1; }
+.daily-label { color: var(--color-muted); font-size: var(--text-xs); font-weight: 600; }
+.daily-card h3 { margin: var(--space-xs) 0; font-size: var(--text-lg); line-height: 1.6; }
+.daily-card p { margin: var(--space-xs) 0; line-height: 1.9; color: var(--color-ink-2); }
+.daily-mood { background: var(--grain), var(--fibre), var(--color-kraft); }
+.daily-mood .daily-mood-text { font-size: clamp(1.2rem, 2.3vw, 1.7rem); }
+.daily-joke { background: var(--grain), var(--fibre), var(--color-paper-2); }
+.daily-source { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-xs); margin-top: var(--space-md); color: var(--color-accent-2); font-size: var(--text-sm); text-decoration: underline; text-underline-offset: 3px; }
+.daily-card summary { cursor: pointer; width: fit-content; min-height: 44px; padding-block: 10px; color: var(--color-accent-2); font-weight: 600; }
+.daily-card summary:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+.daily-story-body { max-width: 68ch; }
+@media (max-width: 1000px) { .daily-size-small, .daily-size-medium, .daily-size-large { grid-column: span 6; } }
+@media (max-width: 700px) { .daily-edition { margin-top: var(--space-lg); } .daily-grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-xs); } .daily-card { grid-column: 1; padding: var(--space-md); } }

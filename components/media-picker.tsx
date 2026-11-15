@@ -26,7 +26,7 @@ export function MediaPicker({ widget, onChange, onPlay }: { widget: Widget; onCh
     setItems([]); setError(''); setBusy(false);
     const value = query.trim();
     if (widget.type !== 'ptt' && validMedia(widget.type, value)) { setItems([{ url: value, title: '我的內容' }]); return; }
-    if (/^https?:/i.test(value) || widget.type === 'spotify') { setError('請貼上這個平台支援的影片、頻道或播放清單網址。'); return; }
+    if (/^https?:/i.test(value)) { setError('請貼上這個平台支援的影片、頻道或播放清單網址。'); return; }
     if (!value) return;
     setBusy(true);
     try {
@@ -40,7 +40,7 @@ export function MediaPicker({ widget, onChange, onPlay }: { widget: Widget; onCh
   return <div className="media-picker">
     {widget.type !== 'ptt' && <MediaLibrary provider={widget.type} choose={choose} />}
     <form className="media-search" onSubmit={submit}>
-      <input aria-label="搜尋或貼上網址" placeholder={widget.type === 'spotify' ? '貼上 Spotify 網址' : '搜尋或貼上網址'} value={query} maxLength={2048} onChange={(e) => setQuery(e.target.value)} />
+      <input aria-label="搜尋或貼上網址" placeholder={'搜尋或貼上網址'} value={query} maxLength={2048} onChange={(e) => setQuery(e.target.value)} />
       <button className="solid-button" disabled={busy || !query.trim()}>{busy ? '搜尋中' : '尋找'}</button>
     </form>
     {error && <p className="form-error" role="status">{error}</p>}

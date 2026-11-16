@@ -1,49 +1,67 @@
 {
   "version": 1,
-  "date": "2026-11-15",
-  "editedAt": "2026-11-15T06:34:59+00:00",
+  "date": "2026-11-16",
+  "editedAt": "2026-11-16T08:29:34.629+08:00",
   "sections": [
     {
       "id": "mood",
       "type": "mood",
       "size": "full",
-      "contentId": "slow-sunday"
+      "contentId": "monday-loading"
     },
     {
       "id": "lead",
       "type": "news",
       "size": "large",
-      "contentId": "rezero"
+      "contentId": "chiikawa-tuner"
     },
     {
       "id": "joke-one",
       "type": "joke",
       "size": "small",
-      "contentId": "cat-meeting"
+      "contentId": "guitar-out-of-tune"
     },
     {
       "id": "news-two",
       "type": "news",
       "size": "medium",
-      "contentId": "lovelive"
+      "contentId": "memories-robot"
     },
     {
       "id": "news-three",
       "type": "news",
       "size": "medium",
-      "contentId": "gundam"
+      "contentId": "windbreaker-band"
     },
     {
       "id": "story",
       "type": "story",
       "size": "large",
-      "contentId": "cloud-shop"
+      "contentId": "slow-elevator"
     },
     {
       "id": "joke-two",
       "type": "joke",
       "size": "small",
-      "contentId": "weekend-update"
+      "contentId": "microwave-time-machine"
+    },
+    {
+      "id": "news-four",
+      "type": "news",
+      "size": "medium",
+      "contentId": "satoshi-kon-accessories"
+    },
+    {
+      "id": "news-five",
+      "type": "news",
+      "size": "medium",
+      "contentId": "tanaka-yuki-photobook"
+    },
+    {
+      "id": "joke-three",
+      "type": "joke",
+      "size": "small",
+      "contentId": "fridge-inspiration"
     }
   ]
 }

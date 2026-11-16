@@ -1,29 +1,47 @@
 [
   {
-    "id": "rezero",
-    "title": "《Re:Zero》第五季，新的旅程確定出發",
-    "summary": "11 月 14 日的十週年活動宣布電視動畫第五季製作決定，並公開昴與雷姆的新視覺圖。這次先把消息收進待看清單，播出時間仍待後續公告。",
-    "category": "動漫",
-    "source": "MANTANWEB",
-    "url": "https://en.mantan-web.jp/e_article/20261114dog00m200018000a.html",
-    "publishedAt": "2026-11-14T21:00:00+09:00"
+    "id": "chiikawa-tuner",
+    "title": "吉伊卡哇也來幫吉他調音了",
+    "summary": "吉伊卡哇、小八貓和兔兔化身可夾在樂器上的調音器，透過震動辨識音高，支援吉他、貝斯與烏克麗麗等模式。日本預定 11 月 20 日開賣，練琴時多了一位迷你陪練。",
+    "category": "動漫・音樂",
+    "source": "アニメ！アニメ！",
+    "url": "https://animeanime.jp/article/2026/11/15/104795.html",
+    "publishedAt": "2026-11-15T16:00:00+09:00"
   },
   {
-    "id": "lovelive",
-    "title": "蓮之空公開首支電視動畫影像",
-    "summary": "《Love Live! 蓮之空女學院學園偶像俱樂部》釋出特別 PV，呈現新生入學後的樣貌，也公開新版本歌曲。想替週末補一點青春感，可以從原文裡的影片開始。",
-    "category": "音樂・動漫",
-    "source": "MANTANWEB",
-    "url": "https://en.mantan-web.jp/e_article/20261114dog00m200026000a.html",
-    "publishedAt": "2026-11-14T22:27:00+09:00"
+    "id": "memories-robot",
+    "title": "有人專門拍做家事的影片，教機器人學生活",
+    "summary": "Memories.ai 推出付費拍攝任務平台，讓參與者用穿戴式攝影機記錄備餐、上架商品等第一人稱操作畫面，提供機器人訓練。報導也提醒，拍到路人與工作場所資訊的隱私問題仍需處理。",
+    "category": "科技・AI",
+    "source": "TechNews 科技新報",
+    "url": "https://technews.tw/2026/11/15/memories-ai-launches-memories-upload-a-gig-work-platform-for-robot-training-data/",
+    "publishedAt": "2026-11-15T17:00:00+08:00"
   },
   {
-    "id": "gundam",
-    "title": "攻擊鋼彈換上藍色新衣",
-    "summary": "TAMASHII NATION 2026 展出鋼彈基地限定的 METAL BUILD 翔翼型攻擊鋼彈，以藍色為主重新配色。展覽至 11 月 15 日，限定模型預定 11 月 20 日推出。",
-    "category": "日本・模型",
-    "source": "MANTANWEB",
-    "url": "https://en.mantan-web.jp/e_article/20261112dog00m200094000a.html",
-    "publishedAt": "2026-11-15T06:12:00+09:00"
+    "id": "windbreaker-band",
+    "title": "《WIND BREAKER》角色換上樂團造型",
+    "summary": "動畫《WIND BREAKER》推出以樂團對決為主題的全新插畫周邊，包含 CD 封面風格鑰匙圈、Pick 造型吊飾。日本 Animate 也舉辦活動，贈送仿演唱會門票卡片。",
+    "category": "動漫・音樂",
+    "source": "アニメ！アニメ！",
+    "url": "https://animeanime.jp/article/2026/11/15/104801.html",
+    "publishedAt": "2026-11-15T18:30:00+09:00"
+  },
+  {
+    "id": "satoshi-kon-accessories",
+    "title": "今敏動畫的夢幻世界，變成可以戴的髮飾",
+    "summary": "服飾品牌 MAYLA 以今敏導演的《藍色恐懼》和《盜夢偵探》為靈感，設計髮飾與髮簪，將作品中現實與幻想交錯的色彩和意象做成配件，已開放預購。",
+    "category": "日本・動漫",
+    "source": "アニメ！アニメ！",
+    "url": "https://animeanime.jp/article/2026/11/15/104802.html",
+    "publishedAt": "2026-11-15T19:00:00+09:00"
+  },
+  {
+    "id": "tanaka-yuki-photobook",
+    "title": "《偶像大師》聲優田中有紀推出出道十週年寫真集",
+    "summary": "為紀念出道十週年，聲優田中有紀將於 12 月 24 日推出寫真集《ゆきのとなり。》，回顧演藝經歷並收錄訪談；另有附拍攝花絮 DVD 的限定版本。",
+    "category": "聲優・音樂",
+    "source": "アニメ！アニメ！",
+    "url": "https://animeanime.jp/article/2026/11/16/104803.html",
+    "publishedAt": "2026-11-16T07:45:00+09:00"
   }
 ]

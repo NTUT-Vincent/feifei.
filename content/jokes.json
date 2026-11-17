@@ -1,23 +1,23 @@
 [
   {
-    "id": "fridge-inspiration",
-    "kind": "original",
-    "title": "半夜的靈感",
-    "setup": "我半夜打開冰箱，說想找一點靈感。",
-    "punchline": "冰箱亮起燈回答：「這裡只有昨天的布丁，你要不要先從甜點開始？」"
+    "id": "alarm-vacation",
+    "title": "鬧鐘請假",
+    "setup": "我問鬧鐘：「明天可以不要響嗎？」",
+    "punchline": "鬧鐘說：「可以，但你得先幫我跟星期三請假。」",
+    "kind": "original"
   },
   {
-    "id": "guitar-out-of-tune",
-    "kind": "original",
-    "title": "走音的自由",
-    "setup": "我問吉他，為什麼今天每條弦都不太聽話？",
-    "punchline": "它說：「我只是想跟生活保持一點走音的自由。」"
+    "id": "cloud-storage",
+    "title": "雲端空間",
+    "setup": "朋友說他的雲端空間快滿了，問我怎麼辦。",
+    "punchline": "我建議他等晴天，雲應該會少一點。",
+    "kind": "original"
   },
   {
-    "id": "microwave-time-machine",
-    "kind": "original",
-    "title": "便利商店的時光機",
-    "setup": "店員說店裡新裝了一台時光機，我興奮地跑去試。",
-    "punchline": "結果是微波爐。叮一聲，我的宵夜就抵達三十秒後。"
+    "id": "tea-leaves",
+    "title": "茶包的職涯",
+    "setup": "茶包說自己每天都泡在工作裡。",
+    "punchline": "杯子安慰它：「至少你很有內涵，還會回甘。」",
+    "kind": "original"
   }
 ]

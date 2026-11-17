@@ -1,47 +1,29 @@
 [
   {
-    "id": "chiikawa-tuner",
-    "title": "吉伊卡哇也來幫吉他調音了",
-    "summary": "吉伊卡哇、小八貓和兔兔化身可夾在樂器上的調音器，透過震動辨識音高，支援吉他、貝斯與烏克麗麗等模式。日本預定 11 月 20 日開賣，練琴時多了一位迷你陪練。",
-    "category": "動漫・音樂",
+    "id": "diamond-anime",
+    "title": "《鑽石的功罪》宣布改編電視動畫",
+    "summary": "平井大橋的棒球漫畫確定動畫化，由 Lapin Track 製作、長友孝和執導，並公開主視覺圖。",
+    "category": "動漫",
     "source": "アニメ！アニメ！",
-    "url": "https://animeanime.jp/article/2026/11/15/104795.html",
-    "publishedAt": "2026-11-15T16:00:00+09:00"
+    "url": "https://s.animeanime.jp/article/2026/11/17/104835.html",
+    "publishedAt": "2026-11-17T00:00:00+09:00"
   },
   {
-    "id": "memories-robot",
-    "title": "有人專門拍做家事的影片，教機器人學生活",
-    "summary": "Memories.ai 推出付費拍攝任務平台，讓參與者用穿戴式攝影機記錄備餐、上架商品等第一人稱操作畫面，提供機器人訓練。報導也提醒，拍到路人與工作場所資訊的隱私問題仍需處理。",
-    "category": "科技・AI",
-    "source": "TechNews 科技新報",
-    "url": "https://technews.tw/2026/11/15/memories-ai-launches-memories-upload-a-gig-work-platform-for-robot-training-data/",
-    "publishedAt": "2026-11-15T17:00:00+08:00"
+    "id": "marin-white-cat",
+    "title": "喜多川海夢變身白貓造型景品",
+    "summary": "《戀上換裝娃娃》推出喜多川海夢貓耳與尾巴造型模型，預計十一月第四週起在日本遊樂設施陸續登場。",
+    "category": "動漫・模型",
+    "source": "アニメ！アニメ！",
+    "url": "https://animeanime.jp/article/2026/11/17/104836.html",
+    "publishedAt": "2026-11-17T07:30:00+09:00"
   },
   {
-    "id": "windbreaker-band",
-    "title": "《WIND BREAKER》角色換上樂團造型",
-    "summary": "動畫《WIND BREAKER》推出以樂團對決為主題的全新插畫周邊，包含 CD 封面風格鑰匙圈、Pick 造型吊飾。日本 Animate 也舉辦活動，贈送仿演唱會門票卡片。",
-    "category": "動漫・音樂",
+    "id": "sunsun-47",
+    "title": "Puppet SUNSUN 走遍日本 47 都道府縣",
+    "summary": "「SUNSUN meets 47」企劃推出各地特色海報、區域限定廣告與明信片，讓日本車站多一點可愛風景。",
+    "category": "日本・生活",
     "source": "アニメ！アニメ！",
-    "url": "https://animeanime.jp/article/2026/11/15/104801.html",
-    "publishedAt": "2026-11-15T18:30:00+09:00"
-  },
-  {
-    "id": "satoshi-kon-accessories",
-    "title": "今敏動畫的夢幻世界，變成可以戴的髮飾",
-    "summary": "服飾品牌 MAYLA 以今敏導演的《藍色恐懼》和《盜夢偵探》為靈感，設計髮飾與髮簪，將作品中現實與幻想交錯的色彩和意象做成配件，已開放預購。",
-    "category": "日本・動漫",
-    "source": "アニメ！アニメ！",
-    "url": "https://animeanime.jp/article/2026/11/15/104802.html",
-    "publishedAt": "2026-11-15T19:00:00+09:00"
-  },
-  {
-    "id": "tanaka-yuki-photobook",
-    "title": "《偶像大師》聲優田中有紀推出出道十週年寫真集",
-    "summary": "為紀念出道十週年，聲優田中有紀將於 12 月 24 日推出寫真集《ゆきのとなり。》，回顧演藝經歷並收錄訪談；另有附拍攝花絮 DVD 的限定版本。",
-    "category": "聲優・音樂",
-    "source": "アニメ！アニメ！",
-    "url": "https://animeanime.jp/article/2026/11/16/104803.html",
-    "publishedAt": "2026-11-16T07:45:00+09:00"
+    "url": "https://s.animeanime.jp/article/2026/11/16/104833.html",
+    "publishedAt": "2026-11-16T19:45:00+09:00"
   }
 ]

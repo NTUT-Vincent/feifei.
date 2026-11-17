@@ -1,67 +1,55 @@
 {
   "version": 1,
-  "date": "2026-11-16",
-  "editedAt": "2026-11-16T08:29:34.629+08:00",
+  "date": "2026-11-17",
+  "editedAt": "2026-11-17T09:12:00+08:00",
   "sections": [
     {
       "id": "mood",
       "type": "mood",
       "size": "full",
-      "contentId": "monday-loading"
+      "contentId": "tuesday-soft"
     },
     {
       "id": "lead",
       "type": "news",
       "size": "large",
-      "contentId": "chiikawa-tuner"
+      "contentId": "diamond-anime"
     },
     {
       "id": "joke-one",
       "type": "joke",
       "size": "small",
-      "contentId": "guitar-out-of-tune"
+      "contentId": "alarm-vacation"
     },
     {
       "id": "news-two",
       "type": "news",
       "size": "medium",
-      "contentId": "memories-robot"
+      "contentId": "marin-white-cat"
     },
     {
       "id": "news-three",
       "type": "news",
       "size": "medium",
-      "contentId": "windbreaker-band"
+      "contentId": "sunsun-47"
     },
     {
       "id": "story",
       "type": "story",
       "size": "large",
-      "contentId": "slow-elevator"
+      "contentId": "lost-five-minutes"
     },
     {
       "id": "joke-two",
       "type": "joke",
       "size": "small",
-      "contentId": "microwave-time-machine"
-    },
-    {
-      "id": "news-four",
-      "type": "news",
-      "size": "medium",
-      "contentId": "satoshi-kon-accessories"
-    },
-    {
-      "id": "news-five",
-      "type": "news",
-      "size": "medium",
-      "contentId": "tanaka-yuki-photobook"
+      "contentId": "cloud-storage"
     },
     {
       "id": "joke-three",
       "type": "joke",
       "size": "small",
-      "contentId": "fridge-inspiration"
+      "contentId": "tea-leaves"
     }
   ]
 }

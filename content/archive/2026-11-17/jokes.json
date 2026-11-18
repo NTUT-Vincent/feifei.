@@ -1,0 +1,23 @@
+[
+  {
+    "id": "alarm-vacation",
+    "title": "鬧鐘請假",
+    "setup": "我問鬧鐘：「明天可以不要響嗎？」",
+    "punchline": "鬧鐘說：「可以，但你得先幫我跟星期三請假。」",
+    "kind": "original"
+  },
+  {
+    "id": "cloud-storage",
+    "title": "雲端空間",
+    "setup": "朋友說他的雲端空間快滿了，問我怎麼辦。",
+    "punchline": "我建議他等晴天，雲應該會少一點。",
+    "kind": "original"
+  },
+  {
+    "id": "tea-leaves",
+    "title": "茶包的職涯",
+    "setup": "茶包說自己每天都泡在工作裡。",
+    "punchline": "杯子安慰它：「至少你很有內涵，還會回甘。」",
+    "kind": "original"
+  }
+]

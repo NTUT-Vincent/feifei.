@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "date": "2026-11-18",
+  "editedAt": "2026-11-18T08:50:56.432+08:00",
+  "sections": [
+    {
+      "id": "mood",
+      "type": "mood",
+      "size": "full",
+      "contentId": "soft-toast-wednesday"
+    },
+    {
+      "id": "lead",
+      "type": "news",
+      "size": "large",
+      "contentId": "chiikawa-abema-382"
+    },
+    {
+      "id": "joke-one",
+      "type": "joke",
+      "size": "small",
+      "contentId": "plant-meeting"
+    },
+    {
+      "id": "news-two",
+      "type": "news",
+      "size": "medium",
+      "contentId": "estella-rhythm-early"
+    },
+    {
+      "id": "news-three",
+      "type": "news",
+      "size": "medium",
+      "contentId": "genshin-mcd-japan"
+    },
+    {
+      "id": "story",
+      "type": "story",
+      "size": "large",
+      "contentId": "sound-vending-machine"
+    },
+    {
+      "id": "joke-two",
+      "type": "joke",
+      "size": "small",
+      "contentId": "wifi-dayoff"
+    },
+    {
+      "id": "news-four",
+      "type": "news",
+      "size": "medium",
+      "contentId": "tsukine-kona-book-cover"
+    },
+    {
+      "id": "news-five",
+      "type": "news",
+      "size": "medium",
+      "contentId": "haikyu-joyfull-menu"
+    },
+    {
+      "id": "joke-three",
+      "type": "joke",
+      "size": "small",
+      "contentId": "toast-motivation"
+    }
+  ]
+}

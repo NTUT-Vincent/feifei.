@@ -1,23 +1,23 @@
 [
   {
-    "id": "plant-meeting",
-    "title": "會議室的盆栽",
-    "setup": "同事問會議室的盆栽，為什麼長得特別茂盛。",
-    "punchline": "盆栽說：「每天都有免費的廢話當肥料。」",
+    "id": "calendar-snooze",
+    "title": "行事曆的請求",
+    "setup": "我問行事曆：「今天還有空檔嗎？」",
+    "punchline": "它說：「有，午休那格寫著『請勿再塞東西』。」",
     "kind": "original"
   },
   {
-    "id": "wifi-dayoff",
-    "title": "Wi-Fi 的請假單",
-    "setup": "我問 Wi-Fi，怎麼每次下班後都特別慢。",
-    "punchline": "它說：「你都下班了，我不能也切成省電模式嗎？」",
+    "id": "headphone-alone-time",
+    "title": "耳機的獨處時間",
+    "setup": "耳機突然只剩右邊有聲音，我問左邊怎麼了。",
+    "punchline": "左耳說：「今天想單曲循環一下安靜。」",
     "kind": "original"
   },
   {
-    "id": "toast-motivation",
-    "title": "吐司的夢想",
-    "setup": "吐司問烤麵包機：「我到底適合做什麼？」",
-    "punchline": "烤麵包機說：「先別急，你很快就會出頭天，還是金色的。」",
+    "id": "sock-solo",
+    "title": "襪子的個人發展",
+    "setup": "洗完衣服，兩隻襪子只剩一隻。",
+    "punchline": "另一隻留字條：「我決定單飛，先去烘衣機巡演。」",
     "kind": "original"
   }
 ]

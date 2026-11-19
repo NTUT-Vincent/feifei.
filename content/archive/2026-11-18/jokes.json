@@ -1,0 +1,23 @@
+[
+  {
+    "id": "plant-meeting",
+    "title": "會議室的盆栽",
+    "setup": "同事問會議室的盆栽，為什麼長得特別茂盛。",
+    "punchline": "盆栽說：「每天都有免費的廢話當肥料。」",
+    "kind": "original"
+  },
+  {
+    "id": "wifi-dayoff",
+    "title": "Wi-Fi 的請假單",
+    "setup": "我問 Wi-Fi，怎麼每次下班後都特別慢。",
+    "punchline": "它說：「你都下班了，我不能也切成省電模式嗎？」",
+    "kind": "original"
+  },
+  {
+    "id": "toast-motivation",
+    "title": "吐司的夢想",
+    "setup": "吐司問烤麵包機：「我到底適合做什麼？」",
+    "punchline": "烤麵包機說：「先別急，你很快就會出頭天，還是金色的。」",
+    "kind": "original"
+  }
+]

@@ -1,67 +1,67 @@
 {
   "version": 1,
-  "date": "2026-11-18",
-  "editedAt": "2026-11-18T08:50:56.432+08:00",
+  "date": "2026-11-19",
+  "editedAt": "2026-11-19T08:59:42.269+08:00",
   "sections": [
     {
       "id": "mood",
       "type": "mood",
       "size": "full",
-      "contentId": "soft-toast-wednesday"
+      "contentId": "thursday-blanket-pause"
     },
     {
       "id": "lead",
       "type": "news",
       "size": "large",
-      "contentId": "chiikawa-abema-382"
+      "contentId": "hayama-fuka-taiwan-photos"
     },
     {
       "id": "joke-one",
       "type": "joke",
       "size": "small",
-      "contentId": "plant-meeting"
+      "contentId": "calendar-snooze"
     },
     {
       "id": "news-two",
       "type": "news",
       "size": "medium",
-      "contentId": "estella-rhythm-early"
+      "contentId": "sakamoto-creepy-nuts-2027"
     },
     {
       "id": "news-three",
       "type": "news",
       "size": "medium",
-      "contentId": "genshin-mcd-japan"
+      "contentId": "spice-wolf-season-two-jan"
     },
     {
       "id": "story",
       "type": "story",
       "size": "large",
-      "contentId": "sound-vending-machine"
+      "contentId": "snail-postman-thursday"
     },
     {
       "id": "joke-two",
       "type": "joke",
       "size": "small",
-      "contentId": "wifi-dayoff"
+      "contentId": "headphone-alone-time"
     },
     {
       "id": "news-four",
       "type": "news",
       "size": "medium",
-      "contentId": "tsukine-kona-book-cover"
+      "contentId": "wuthering-waves-seven-characters"
     },
     {
       "id": "news-five",
       "type": "news",
       "size": "medium",
-      "contentId": "haikyu-joyfull-menu"
+      "contentId": "snoopy-tokyo-station-renewal"
     },
     {
       "id": "joke-three",
       "type": "joke",
       "size": "small",
-      "contentId": "toast-motivation"
+      "contentId": "sock-solo"
     }
   ]
 }

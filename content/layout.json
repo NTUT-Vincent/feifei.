@@ -1,67 +1,67 @@
 {
   "version": 1,
-  "date": "2026-11-19",
-  "editedAt": "2026-11-19T08:59:42.269+08:00",
+  "date": "2026-11-20",
+  "editedAt": "2026-11-20T08:40:08.504+08:00",
   "sections": [
     {
       "id": "mood",
       "type": "mood",
       "size": "full",
-      "contentId": "thursday-blanket-pause"
+      "contentId": "friday-slow-sunshine"
     },
     {
       "id": "lead",
       "type": "news",
       "size": "large",
-      "contentId": "hayama-fuka-taiwan-photos"
+      "contentId": "rayearth-windam-midori"
     },
     {
       "id": "joke-one",
       "type": "joke",
       "size": "small",
-      "contentId": "calendar-snooze"
+      "contentId": "friday-printer"
     },
     {
       "id": "news-two",
       "type": "news",
       "size": "medium",
-      "contentId": "sakamoto-creepy-nuts-2027"
+      "contentId": "oishinbo-2027-cast"
     },
     {
       "id": "news-three",
       "type": "news",
       "size": "medium",
-      "contentId": "spice-wolf-season-two-jan"
+      "contentId": "chiikawa-osaka-parkstore"
     },
     {
       "id": "story",
       "type": "story",
       "size": "large",
-      "contentId": "snail-postman-thursday"
+      "contentId": "sun-slept-in-friday"
     },
     {
       "id": "joke-two",
       "type": "joke",
       "size": "small",
-      "contentId": "headphone-alone-time"
+      "contentId": "forecast-mute"
     },
     {
       "id": "news-four",
       "type": "news",
       "size": "medium",
-      "contentId": "wuthering-waves-seven-characters"
+      "contentId": "jump-festa-abema-2027"
     },
     {
       "id": "news-five",
       "type": "news",
       "size": "medium",
-      "contentId": "snoopy-tokyo-station-renewal"
+      "contentId": "kitty-yamato-goods"
     },
     {
       "id": "joke-three",
       "type": "joke",
       "size": "small",
-      "contentId": "sock-solo"
+      "contentId": "pdf-final"
     }
   ]
 }

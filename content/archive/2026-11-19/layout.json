@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "date": "2026-11-19",
+  "editedAt": "2026-11-19T08:59:42.269+08:00",
+  "sections": [
+    {
+      "id": "mood",
+      "type": "mood",
+      "size": "full",
+      "contentId": "thursday-blanket-pause"
+    },
+    {
+      "id": "lead",
+      "type": "news",
+      "size": "large",
+      "contentId": "hayama-fuka-taiwan-photos"
+    },
+    {
+      "id": "joke-one",
+      "type": "joke",
+      "size": "small",
+      "contentId": "calendar-snooze"
+    },
+    {
+      "id": "news-two",
+      "type": "news",
+      "size": "medium",
+      "contentId": "sakamoto-creepy-nuts-2027"
+    },
+    {
+      "id": "news-three",
+      "type": "news",
+      "size": "medium",
+      "contentId": "spice-wolf-season-two-jan"
+    },
+    {
+      "id": "story",
+      "type": "story",
+      "size": "large",
+      "contentId": "snail-postman-thursday"
+    },
+    {
+      "id": "joke-two",
+      "type": "joke",
+      "size": "small",
+      "contentId": "headphone-alone-time"
+    },
+    {
+      "id": "news-four",
+      "type": "news",
+      "size": "medium",
+      "contentId": "wuthering-waves-seven-characters"
+    },
+    {
+      "id": "news-five",
+      "type": "news",
+      "size": "medium",
+      "contentId": "snoopy-tokyo-station-renewal"
+    },
+    {
+      "id": "joke-three",
+      "type": "joke",
+      "size": "small",
+      "contentId": "sock-solo"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "calendar-snooze",
+    "title": "行事曆的請求",
+    "setup": "我問行事曆：「今天還有空檔嗎？」",
+    "punchline": "它說：「有，午休那格寫著『請勿再塞東西』。」",
+    "kind": "original"
+  },
+  {
+    "id": "headphone-alone-time",
+    "title": "耳機的獨處時間",
+    "setup": "耳機突然只剩右邊有聲音，我問左邊怎麼了。",
+    "punchline": "左耳說：「今天想單曲循環一下安靜。」",
+    "kind": "original"
+  },
+  {
+    "id": "sock-solo",
+    "title": "襪子的個人發展",
+    "setup": "洗完衣服，兩隻襪子只剩一隻。",
+    "punchline": "另一隻留字條：「我決定單飛，先去烘衣機巡演。」",
+    "kind": "original"
+  }
+]

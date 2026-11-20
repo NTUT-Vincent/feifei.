@@ -1,23 +1,23 @@
 [
   {
-    "id": "calendar-snooze",
-    "title": "行事曆的請求",
-    "setup": "我問行事曆：「今天還有空檔嗎？」",
-    "punchline": "它說：「有，午休那格寫著『請勿再塞東西』。」",
+    "id": "friday-printer",
+    "title": "影印機的心願",
+    "setup": "主管問影印機，為什麼今天一直卡紙？",
+    "punchline": "它說：「我想把星期五複製三份，這樣大家就能多放兩天假。」",
     "kind": "original"
   },
   {
-    "id": "headphone-alone-time",
-    "title": "耳機的獨處時間",
-    "setup": "耳機突然只剩右邊有聲音，我問左邊怎麼了。",
-    "punchline": "左耳說：「今天想單曲循環一下安靜。」",
+    "id": "forecast-mute",
+    "title": "週末天氣預報",
+    "setup": "我問天氣 App：「週末會放晴嗎？」",
+    "punchline": "它說：「你先把工作群組靜音，體感就會晴朗很多。」",
     "kind": "original"
   },
   {
-    "id": "sock-solo",
-    "title": "襪子的個人發展",
-    "setup": "洗完衣服，兩隻襪子只剩一隻。",
-    "punchline": "另一隻留字條：「我決定單飛，先去烘衣機巡演。」",
+    "id": "pdf-final",
+    "title": "PDF 的堅持",
+    "setup": "我問 PDF，為什麼總是不肯改變？",
+    "punchline": "它說：「好不容易定稿了，拜託別再叫我靈活一點。」",
     "kind": "original"
   }
 ]

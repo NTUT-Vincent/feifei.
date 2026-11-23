@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "date": "2026-11-20",
+  "editedAt": "2026-11-20T08:40:08.504+08:00",
+  "sections": [
+    {
+      "id": "mood",
+      "type": "mood",
+      "size": "full",
+      "contentId": "friday-slow-sunshine"
+    },
+    {
+      "id": "lead",
+      "type": "news",
+      "size": "large",
+      "contentId": "rayearth-windam-midori"
+    },
+    {
+      "id": "joke-one",
+      "type": "joke",
+      "size": "small",
+      "contentId": "friday-printer"
+    },
+    {
+      "id": "news-two",
+      "type": "news",
+      "size": "medium",
+      "contentId": "oishinbo-2027-cast"
+    },
+    {
+      "id": "news-three",
+      "type": "news",
+      "size": "medium",
+      "contentId": "chiikawa-osaka-parkstore"
+    },
+    {
+      "id": "story",
+      "type": "story",
+      "size": "large",
+      "contentId": "sun-slept-in-friday"
+    },
+    {
+      "id": "joke-two",
+      "type": "joke",
+      "size": "small",
+      "contentId": "forecast-mute"
+    },
+    {
+      "id": "news-four",
+      "type": "news",
+      "size": "medium",
+      "contentId": "jump-festa-abema-2027"
+    },
+    {
+      "id": "news-five",
+      "type": "news",
+      "size": "medium",
+      "contentId": "kitty-yamato-goods"
+    },
+    {
+      "id": "joke-three",
+      "type": "joke",
+      "size": "small",
+      "contentId": "pdf-final"
+    }
+  ]
+}

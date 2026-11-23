@@ -1,67 +1,55 @@
 {
   "version": 1,
-  "date": "2026-11-20",
-  "editedAt": "2026-11-20T08:40:08.504+08:00",
+  "date": "2026-11-23",
+  "editedAt": "2026-11-23T08:45:43.245+08:00",
   "sections": [
     {
       "id": "mood",
       "type": "mood",
       "size": "full",
-      "contentId": "friday-slow-sunshine"
+      "contentId": "monday-snooze"
     },
     {
       "id": "lead",
       "type": "news",
       "size": "large",
-      "contentId": "rayearth-windam-midori"
+      "contentId": "jumpfesta-amnibus-2027"
     },
     {
       "id": "joke-one",
       "type": "joke",
       "size": "small",
-      "contentId": "friday-printer"
+      "contentId": "monday-coffee-cloud"
     },
     {
       "id": "news-two",
       "type": "news",
       "size": "medium",
-      "contentId": "oishinbo-2027-cast"
+      "contentId": "frieren-book-figure"
     },
     {
       "id": "news-three",
       "type": "news",
       "size": "medium",
-      "contentId": "chiikawa-osaka-parkstore"
+      "contentId": "demon-slayer-rerun-finale"
     },
     {
       "id": "story",
       "type": "story",
       "size": "large",
-      "contentId": "sun-slept-in-friday"
+      "contentId": "future-post-office"
     },
     {
       "id": "joke-two",
       "type": "joke",
       "size": "small",
-      "contentId": "forecast-mute"
-    },
-    {
-      "id": "news-four",
-      "type": "news",
-      "size": "medium",
-      "contentId": "jump-festa-abema-2027"
-    },
-    {
-      "id": "news-five",
-      "type": "news",
-      "size": "medium",
-      "contentId": "kitty-yamato-goods"
+      "contentId": "blanket-remote"
     },
     {
       "id": "joke-three",
       "type": "joke",
       "size": "small",
-      "contentId": "pdf-final"
+      "contentId": "calendar-silent"
     }
   ]
 }

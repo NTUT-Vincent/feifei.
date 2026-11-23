@@ -1,0 +1,23 @@
+[
+  {
+    "id": "friday-printer",
+    "title": "影印機的心願",
+    "setup": "主管問影印機，為什麼今天一直卡紙？",
+    "punchline": "它說：「我想把星期五複製三份，這樣大家就能多放兩天假。」",
+    "kind": "original"
+  },
+  {
+    "id": "forecast-mute",
+    "title": "週末天氣預報",
+    "setup": "我問天氣 App：「週末會放晴嗎？」",
+    "punchline": "它說：「你先把工作群組靜音，體感就會晴朗很多。」",
+    "kind": "original"
+  },
+  {
+    "id": "pdf-final",
+    "title": "PDF 的堅持",
+    "setup": "我問 PDF，為什麼總是不肯改變？",
+    "punchline": "它說：「好不容易定稿了，拜託別再叫我靈活一點。」",
+    "kind": "original"
+  }
+]

@@ -1,23 +1,23 @@
 [
   {
-    "id": "friday-printer",
-    "title": "影印機的心願",
-    "setup": "主管問影印機，為什麼今天一直卡紙？",
-    "punchline": "它說：「我想把星期五複製三份，這樣大家就能多放兩天假。」",
+    "id": "monday-coffee-cloud",
+    "title": "咖啡的請假單",
+    "setup": "我問咖啡，為什麼星期一特別苦？",
+    "punchline": "它說：「因為星期天的甜，已經被你喝完了。」",
     "kind": "original"
   },
   {
-    "id": "forecast-mute",
-    "title": "週末天氣預報",
-    "setup": "我問天氣 App：「週末會放晴嗎？」",
-    "punchline": "它說：「你先把工作群組靜音，體感就會晴朗很多。」",
+    "id": "blanket-remote",
+    "title": "棉被遙控器",
+    "setup": "我找不到電視遙控器，問棉被有沒有看到。",
+    "punchline": "棉被說：「沒有，但我可以幫你切換到睡眠模式。」",
     "kind": "original"
   },
   {
-    "id": "pdf-final",
-    "title": "PDF 的堅持",
-    "setup": "我問 PDF，為什麼總是不肯改變？",
-    "punchline": "它說：「好不容易定稿了，拜託別再叫我靈活一點。」",
+    "id": "calendar-silent",
+    "title": "行事曆的願望",
+    "setup": "我問行事曆今年最想新增什麼功能。",
+    "punchline": "它說：「希望有一天能自動把『稍後再說』變成國定假日。」",
     "kind": "original"
   }
 ]
